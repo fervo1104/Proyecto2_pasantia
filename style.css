@@ -1,0 +1,14 @@
+
+.form-respond label{
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-bottom: 8px;
+}
+.form-respond{
+    margin-bottom: 20px;
+    text-align: left;
+}
