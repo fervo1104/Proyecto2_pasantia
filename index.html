@@ -1,49 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=   , initial-scale=1.0">
-    <title>Formulario de reportes seguro </title>
-    <link rel="stylesheet" href="style.css">
-</head>
-
 <body>
     <div class="container">
         <h1>Formulario de Reporte de Incidente</h1>
-        <p>Cueentanos aquí tu problema</p>
+        <p>Cuéntanos aquí tu problema</p>
 
-    <form id="formulario">
-        <div class="form-group">
-            <label class="form-respond">Nombre completo:</label>
-            <input type="text" id="nombre" placeholder="Escribe tu nombre aquí " required class="input-field">
+        <div class="card">
+            <form id="formulario">
+                <div class="form-group">
+                    <label class="form-respond">Nombre completo:</label>
+                    <input type="text" id="nombre" placeholder="Escribe tu nombre aquí" required class="input-field">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-respond">Correo Electrónico:</label>
+                    <textarea id="correo" placeholder="Escribe tu correo electrónico" required class="input-field"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-respond">Número de teléfono:</label>
+                    <textarea id="telefono" placeholder="Número de teléfono" required class="input-field"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-respond">Ubicación:</label>
+                    <input type="text" id="ubicacion" placeholder="Escribe la dirección del incidente" required class="input-field">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-respond">Descripción del reporte:</label>
+                    <textarea id="descripcion" placeholder="Describe el incidente" required class="input-field"></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary">Enviar reporte</button>
+            </form>
         </div>
-
-        <div class="form-group">
-            <label class="form-respond">Correo Electrónico:</label>
-            <textarea id="correo" placeholder="Escribe tu correo electrónico" required class="input-field"></textarea>
-        </div>
-
-        <div class="form-group">
-            <label class="form-respond">Número de teléfono:</label>
-            <textarea id="telefono" placeholder="Número de teléfono" required class="input-field"></textarea>
-        </div>
-
-        <div class="form-group">
-            <label class="form-respond">Ubicación:</label>
-            <input type="text" id="ubicacion" placeholder="Escribe a dirreción del incidente" required class="input-field">
-        </div>
-
-        <div class="form-group">
-            <label class="form-respond">Descripción del reporte:</label>
-            <textarea id="descripcion" placeholder="Describe el incidente" required class="input-field"></textarea>
-        </div>
-
-        <button type="submit" class="btn-primary">Enviar reporte</button>
-    </form>
+    </div>
 
     <p id="mensaje"></p>
-
-    <script type="module" src="prueba.js"></script></h1>
-    
+    <script type="module" src="prueba.js"></script>
 </body>
-</html>
