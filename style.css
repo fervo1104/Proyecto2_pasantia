@@ -14,3 +14,29 @@
     margin-bottom: 20px;
     text-align: left;
 }
+
+/* Tus estilos normales (para pantallas grandes) van arriba, como ya los tienes */
+
+/* Esto se agrega AL FINAL del archivo */
+@media (max-width: 768px) {
+  /* Estilos para tablets */
+  body {
+    padding: 10px;
+  }
+  
+  #formulario {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Estilos para celulares */
+  input, textarea {
+    font-size: 16px; /* evita que el celular haga zoom al tocar */
+    width: 100%;
+  }
+  
+  button {
+    width: 100%;
+  }
+}
