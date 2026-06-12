@@ -15,9 +15,32 @@
     text-align: left;
 }
 
-/* Tus estilos normales (para pantallas grandes) van arriba, como ya los tienes */
+.btn-primary {
+    background: var(--btn-dark);
+    color: #f0eeea;
+}
+ 
+.btn-primary:hover {
+    background: #111;
+    transform: translateY(-1px);
+}
 
-/* Esto se agrega AL FINAL del archivo */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+ 
+.form-group label {
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-bottom: 8px;
+}
+
+
 @media (max-width: 768px) {
   /* Estilos para tablets */
   body {
@@ -39,4 +62,102 @@
   button {
     width: 100%;
   }
+}
+.container {
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 130px 2rem 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+ 
+.container h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 8px;
+    animation: fadeUp 0.7s 0.1s ease both;
+}
+.input-field {
+    width: 100%;
+    padding: 11px 14px;
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink);
+    transition: border-color 0.2s;
+    outline: none;
+}
+ 
+.input-field::placeholder {
+    color: var(--ink-light);
+}
+ 
+.input-field:focus {
+    border-color: rgba(28, 28, 26, 0.4);
+}
+
+.card {
+    width: 100%;
+    background: rgba(28, 28, 26, 0.02);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 32px;
+    animation: fadeUp 0.7s 0.3s ease both;
+}
+.container {
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 130px 2rem 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+ 
+.container h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 8px;
+    animation: fadeUp 0.7s 0.1s ease both;
+}
+.input-field {
+    width: 100%;
+    padding: 11px 14px;
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink);
+    transition: border-color 0.2s;
+    outline: none;
+}
+ 
+.input-field::placeholder {
+    color: var(--ink-light);
+}
+ 
+.input-field:focus {
+    border-color: rgba(28, 28, 26, 0.4);
+}
+
+.card {
+    width: 100%;
+    background: rgba(28, 28, 26, 0.02);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 32px;
+    animation: fadeUp 0.7s 0.3s ease both;
 }
