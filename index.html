@@ -5,7 +5,12 @@
 
         <div class="card">
             <form id="formulario">
-                <div class="form-group">
+                 <div class="form-group">
+                    <label class="form-respond">Cedula:</label>
+                    <input type="text" id="cedula" placeholder="Escribe tu cedula aquí" required class="input-field">
+                </div>
+                
+                 <div class="form-group">
                     <label class="form-respond">Nombre completo:</label>
                     <input type="text" id="nombre" placeholder="Escribe tu nombre aquí" required class="input-field">
                 </div>
@@ -20,9 +25,40 @@
                     <textarea id="telefono" placeholder="Número de teléfono" required class="input-field"></textarea>
                 </div>
 
+                 <div class="form-group">
+                    <label class="form-respond">Dirección del usuario:</label>
+                    <input type="text" id="direccion" placeholder="Escribe tu dirección aquí" required class="input-field">
+                </div>
+
                 <div class="form-group">
-                    <label class="form-respond">Ubicación:</label>
-                    <input type="text" id="ubicacion" placeholder="Escribe la dirección del incidente" required class="input-field">
+                    <label class="form-respond">Ubicación del reporte:</label>
+                    <select id="opciones" name="opciones">
+                        <option value="">-- Seleccione la ubicación --</option>
+                        <option value="La rivera">La rivera</option>
+                        <option value="La asunción">La asunción</option>
+                        <option value="Ojo de agua ">Ojo de agua </option>
+                    </select>
+                </div>
+
+                 <div class="form-group">
+                    <label class="form-respond">Número del seguro:</label>
+                    <input type="text" id="seguro" placeholder="Escribe el número del seguro" required class="input-field">
+                </div>
+
+                 <div class="form-group">
+                    <label class="form-respond">Edad del responsable:</label>
+                    <input type="text" id="edad" placeholder="Escribe tu edad aquí" required class="input-field">
+                </div>
+
+                 <div class="form-group">
+                    <label class="form-respond">Tipo de incidente:</label>
+                    <select id="opciones" name="opciones">
+                        <option value="">-- Seleccione tipo de incidente --</option>
+                        <option value="Alcantarillado">Alcantarillado</option>
+                        <option value="Aceras">Aceras</option>
+                        <option value="Acueductos">Acueductos</option>
+                        <option value="Alumbrados">Alumbrados</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -31,6 +67,8 @@
                 </div>
 
                 <button type="submit" class="btn-primary">Enviar reporte</button>
+
+                 
             </form>
         </div>
     </div>
