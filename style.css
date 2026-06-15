@@ -15,55 +15,20 @@
   text-align: left;
 }
 
-.form-group {
-  margin-bottom: 20px;
+/* Tus estilos normales (para pantallas grandes) van arriba, como ya los tienes */
+
+/* Esto se agrega AL FINAL del archivo */
+@media (max-width: 768px) {
+  /* Estilos para tablets */
+  body {
+    padding: 10px;
+  }
+  
+  #formulario {
+    width: 90%;
+  }
 }
 
-label.form-respond {
-  display: block;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #000000;
-  margin-bottom: 6px;
-}
-
-.input-field {
-  width: 100%;
-  padding: 10px 12px;
-  font-size: 15px;
-  border: 1px solid #D1D5DB;
-  border-radius: 8px;
-  outline: none;
-  box-sizing: border-box;
-}
-
-.input-field:focus {
-  border-color: #6366F1;
-}
-
-textarea.input-field {
-  min-height: 80px;
-  resize: vertical;
-}
-
-.btn-primary {
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
-  color: white;
-  background-color: #6366F1;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.btn-primary:hover {
-  background-color: #88a5e2;
-}
-
-/* Móvil */
 @media (max-width: 480px) {
   .input-field {
     font-size: 16px;
@@ -72,4 +37,102 @@ textarea.input-field {
   .btn-primary {
     width: 100%;
   }
+}
+.container {
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 130px 2rem 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+ 
+.container h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 8px;
+    animation: fadeUp 0.7s 0.1s ease both;
+}
+.input-field {
+    width: 100%;
+    padding: 11px 14px;
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink);
+    transition: border-color 0.2s;
+    outline: none;
+}
+ 
+.input-field::placeholder {
+    color: var(--ink-light);
+}
+ 
+.input-field:focus {
+    border-color: rgba(28, 28, 26, 0.4);
+}
+
+.card {
+    width: 100%;
+    background: rgba(28, 28, 26, 0.02);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 32px;
+    animation: fadeUp 0.7s 0.3s ease both;
+}
+.container {
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 130px 2rem 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+ 
+.container h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 8px;
+    animation: fadeUp 0.7s 0.1s ease both;
+}
+.input-field {
+    width: 100%;
+    padding: 11px 14px;
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink);
+    transition: border-color 0.2s;
+    outline: none;
+}
+ 
+.input-field::placeholder {
+    color: var(--ink-light);
+}
+ 
+.input-field:focus {
+    border-color: rgba(28, 28, 26, 0.4);
+}
+
+.card {
+    width: 100%;
+    background: rgba(28, 28, 26, 0.02);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 32px;
+    animation: fadeUp 0.7s 0.3s ease both;
 }

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipo de Incidente</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Formulario de Reporte de Incidente</h1>
+        <p>Cuéntanos aquí tu problema</p>
+
+        <div class="card">
+            <form id="formulario">
+                 <div class="form-group">
+                    <label class="form-respond">Cedula:</label>
+                    <input type="text" id="cedula" placeholder="Escribe tu cedula aquí" required class="input-field">
+                </div>
+
+                 <div class="form-group">
+                    <label class="form-respond">Nombre completo:</label>
+                    <input type="text" id="nombre" placeholder="Escribe tu nombre aquí" required class="input-field">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-respond">Correo Electrónico:</label>
+                    <textarea id="correo" placeholder="Escribe tu correo electrónico" required class="input-field"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-respond">Número de teléfono:</label>
+                    <textarea id="telefono" placeholder="Número de teléfono" required class="input-field"></textarea>
+                </div>
+
+                 <div class="form-group">
+                    <label class="form-respond">Dirección del usuario:</label>
+                    <input type="text" id="direccion" placeholder="Escribe tu dirección aquí" required class="input-field">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-respond">Ubicación del reporte:</label>
+                    <select id="opciones" name="opciones">
+                        <option value="">-- Seleccione la ubicación --</option>
+                        <option value="La rivera">La rivera</option>
+                        <option value="La asunción">La asunción</option>
+                        <option value="Ojo de agua ">Ojo de agua </option>
+                    </select>
+                </div>
+
+                 <div class="form-group">
+                    <label class="form-respond">Número del seguro:</label>
+                    <input type="text" id="seguro" placeholder="Escribe el número del seguro" required class="input-field">
+                </div>
+
+                 <div class="form-group">
+                    <label class="form-respond">Edad del responsable:</label>
+                    <select id="opciones" name="opciones">
+                        <option value="">-- Seleccione la edad --</option>
+                        <option value="18-25">18-25 </option>
+                        <option value="26-35">26-35</option>
+                        <option value="36-45">36-45</option>
+                        <option value="46-55">46-55</option>
+                        <option value="56-65">56-65</option>
+                    </select>
+                </div>
+
+                 <div class="form-group">
+                    <label class="form-respond">Tipo de incidente:</label>
+                    <select id="tipoIncidente" name="tipoIncidente">
+                        <option value="">-- Seleccione tipo de incidente --</option>
+                        <option value="Alcantarillado">Alcantarillado</option>
+                        <option value="Aceras">Aceras</option>
+                        <option value="Acueductos">Acueductos</option>
+                        <option value="Alumbrados">Alumbrados</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-respond">Descripción del reporte:</label>
+                    <textarea id="descripcion" placeholder="Describe el incidente" required class="input-field"></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary">Enviar reporte</button>
+            </form>
+        </div>
+    </div>
+
+    <p id="mensaje"></p>
+    <script type="module" src="prueba.js"></script>
+    <script>
+    document.getElementById('tipoIncidente').addEventListener('change', function () {
+        if (this.value !== '') {
+            window.location.href = 'tipodereporte.html?tipo=' + encodeURIComponent(this.value);
+        }
+    });
+</script>
+
+</body>
+</html>
