@@ -67,7 +67,7 @@
 
                  <div class="form-group">
                     <label class="form-respond">Tipo de incidente:</label>
-                    <select id="opciones" name="opciones">
+                    <select id="tipoIncidente" name="tipoIncidente">
                         <option value="">-- Seleccione tipo de incidente --</option>
                         <option value="Alcantarillado">Alcantarillado</option>
                         <option value="Aceras">Aceras</option>
@@ -88,5 +88,13 @@
 
     <p id="mensaje"></p>
     <script type="module" src="prueba.js"></script>
+    <script>
+    document.getElementById('tipoIncidente').addEventListener('change', function () {
+        if (this.value !== '') {
+            window.location.href = 'tipodereporte.html?tipo=' + encodeURIComponent(this.value);
+        }
+    });
+</script>
+
 </body>
 </html>
