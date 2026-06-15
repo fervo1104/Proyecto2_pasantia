@@ -1,42 +1,75 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Quicksand:wght@300..700&display=swap');
-/* prueba de commit*/
-.form-respond label{
-    display: block;
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-mid);
-    margin-bottom: 8px;
-}
-.form-respond{
-    margin-bottom: 20px;
-    text-align: left;
-}
+/* Formulario de contacto */
 
-/* Tus estilos normales (para pantallas grandes) van arriba, como ya los tienes */
-
-/* Esto se agrega AL FINAL del archivo */
-@media (max-width: 768px) {
-  /* Estilos para tablets */
-  body {
-    padding: 10px;
-  }
-  
-  #formulario {
-    width: 90%;
-  }
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+.card {
+  background-color: #90a7e7;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: left;
 }
 
+.form-group {
+  margin-bottom: 20px;
+}
+
+label.form-respond {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #000000;
+  margin-bottom: 6px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 15px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  border-color: #6366F1;
+}
+
+textarea.input-field {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.btn-primary {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  background-color: #6366F1;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #88a5e2;
+}
+
+/* Móvil */
 @media (max-width: 480px) {
-  /* Estilos para celulares */
-  input, textarea {
-    font-size: 16px; /* evita que el celular haga zoom al tocar */
-    width: 100%;
+  .input-field {
+    font-size: 16px;
   }
-  
-  button {
+
+  .btn-primary {
     width: 100%;
   }
 }
