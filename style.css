@@ -83,7 +83,7 @@ textarea.input-field {
   padding: 10px 20px;
   font-size: 14px;
   font-weight: 600;
-  color: 464646;
+  color: #464646;
   background-color: #4d78ab;
   border: none;
   border-radius: 8px;
@@ -109,3 +109,4 @@ select {
 select.selected {
   color: #464646;
 }
+

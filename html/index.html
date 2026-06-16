@@ -40,7 +40,7 @@
 
                 <div class="form-group">
                     <label class="form-respond">Ubicación del reporte:</label>
-                    <select id="opciones" name="opciones">
+                    <select id="ubiopciones" name="ubiopciones">
                         <option value="">-- Seleccione la ubicación --</option>
                         <option value="San José">San José</option>
                         <option value="Alajuela">Alajuela</option>
@@ -59,7 +59,7 @@
 
                  <div class="form-group">
                     <label class="form-respond">Edad del responsable:</label>
-                    <select id="opciones" name="opciones">
+                    <select id="edadOpciones" name="edadOpciones">
                         <option value="">-- Seleccione la edad --</option>
                         <option value="18-25">18-25 </option>
                         <option value="26-35">26-35</option>
@@ -95,13 +95,9 @@
     </div>
 
     <p id="mensaje"></p>
-    <script type="module" src="prueba.js"></script>
+    <script type="module" src="../js/prueba.js"></script>
     <script>
-    document.getElementById('tipoIncidente').addEventListener('change', function () {
-        if (this.value !== '') {
-            window.location.href = 'tipodereporte.html?tipo=' + encodeURIComponent(this.value);
-        }
-    });
+
 </script>
 
 </body>
