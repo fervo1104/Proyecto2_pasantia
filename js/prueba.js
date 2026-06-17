@@ -1,6 +1,7 @@
 
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDAKsga5hYbw5Kerp4ZUg1cRhsER5ti0g8",
@@ -14,6 +15,22 @@
 
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+    const formulario = document.getElementById('formulario'); 
+    formulario.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Evitar que la página se recargue 
+        const nombreValue = document.getElementById('miformulario').value; 
+        const correoValue = document.getElementById('correo').value;
+            try { 
+        // Comando para guardar datos 
+                const docRef = await addDoc(collection(db, "usuarios"), { nombre: nombreValue, correo: correoValue }); 
+                console.log("Documento guardado con ID: ", docRef.id);
+                alert("Datos guardados correctamente"); 
+                formulario.reset(); // Limpiar formulario 
+            } catch (error) { 
+                console.error("Error al guardar: ", error);
+            }
+    }); 
+
 
 
 
