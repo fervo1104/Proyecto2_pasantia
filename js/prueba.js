@@ -105,24 +105,23 @@ document.getElementById("formulario").addEventListener("submit", async function 
     }); 
 
      const formulario = document.getElementById('formulario'); 
-    formulario.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Evitar que la página se recargue 
-        const ubicacionValue = document.getElementById('ubiopciones').value; 
-        const tipoIncidenteValue = document.getElementById('tipoIncidente').value;
-        const distritoValue = document.getElementById('distrito').value;
-        const cedulaValue = document.getElementById('cedula').value;
-        const descripcionValue = document.getElementById('descripcion').value;
-        const cantónValue = document.getElementById('cantón').value;
-            try { 
-        // Comando para guardar datos 
-                const docRef = await addDoc(collection(db, "Usuario"), { ubicacion: ubicacionValue, tipoIncidente: tipoIncidenteValue, distrito: distritoValue, cedula: cedulaValue, descripcion: descripcionValue, cantón: cantónValue }); 
-                console.log("Documento guardado con ID: ", docRef.id);
-                alert("Datos guardados correctamente"); 
-                formulario.reset(); // Limpiar formulario 
-            } catch (error) { 
-                console.error("Error al guardar: ", error);
-            }
-    }); 
+        formulario.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Evitar que la página se recargue 
+            const ubicacionValue = document.getElementById('ubiopciones').value; 
+            const tipoIncidenteValue = document.getElementById('tipoIncidente').value;
+            const distritoValue = document.getElementById('distrito').value;
+            const cedulaValue = document.getElementById('cedula').value;
+            const descripcionValue = document.getElementById('descripcion').value;
+            const cantónValue = document.getElementById('cantón').value;
+                try { 
+                    const docRef = await addDoc(collection(db, "Usuario"), { ubicacion: ubicacionValue, tipoIncidente: tipoIncidenteValue,  distrito: distritoValue, cedula: cedulaValue, descripcion: descripcionValue, cantón: cantónValue }); 
+                    console.log("Documento guardado con ID: ", docRef.id);
+                    alert("Datos guardados correctamente"); 
+                    formulario.reset(); // Limpiar formulario 
+                } catch (error) { 
+                    console.error("Error al guardar: ", error);
+                }
+        }); 
 
 
 
