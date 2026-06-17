@@ -37,20 +37,17 @@ const db = getFirestore(app);
  const formulario = document.getElementById('formulario'); 
     formulario.addEventListener('submit', async (e) => {
         e.preventDefault(); 
+        const TipoidentificaciónValue = document.getElementById('tipoIdentificacion').value;
+        const NúmeroidentificaciónValue = document.getElementById('cedula').value;
         const nombreValue = document.getElementById('nombre').value;
         const correoValue = document.getElementById('correo').value;
         const telefonoValue = document.getElementById('telefono').value;
         const cedulaValue = document.getElementById('cedula').value;
         const edadValue = document.getElementById('edadOpciones').value;
         const direccionValue = document.getElementById('direccion').value;
-        const ubicacionValue = document.getElementById('ubiopciones').value;
-        const cantonValue = document.getElementById('cantón').value;
-        const distritoValue = document.getElementById('distrito').value;
-        const seguroValue = document.getElementById('seguro').value;
-        const tipoIncidenteValue = document.getElementById('tipoIncidente').value;
-        const descripcionValue = document.getElementById('descripcion').value;
+        
             try {
-                const docRef = await addDoc(collection(db, "Usuario"), { nombre: nombreValue, correo: correoValue, telefono: telefonoValue, cedula: cedulaValue, edad: edadValue, direccion: direccionValue, ubicacion: ubicacionValue, canton: cantonValue, distrito: distritoValue, seguro: seguroValue, tipoIncidente: tipoIncidenteValue, descripcion: descripcionValue });
+                const docRef = await addDoc(collection(db, "Usuario"), { nombre: nombreValue, correo: correoValue, telefono: telefonoValue, cedula: cedulaValue, edad: edadValue, direccion: direccionValue, tipoIdentificacion: TipoidentificaciónValue, Númeroidentificación: NúmeroidentificaciónValue });
                 console.log("Documento guardado con ID: ", docRef.id);
                 alert("Datos guardados correctamente"); 
                 formulario.reset(); // Limpiar formulario 
@@ -62,7 +59,6 @@ const db = getFirestore(app);
     formulario.addEventListener('submit', async (e) => {
         e.preventDefault(); 
         const cedulaValue = document.getElementById('cedula').value;
-        const direccionValue = document.getElementById('direccion').value;
         const ubicacionValue = document.getElementById('ubiopciones').value;
         const cantonValue = document.getElementById('cantón').value;
         const distritoValue = document.getElementById('distrito').value;
@@ -70,7 +66,7 @@ const db = getFirestore(app);
         const tipoIncidenteValue = document.getElementById('tipoIncidente').value;
         const descripcionValue = document.getElementById('descripcion').value;
             try {
-                const docRef = await addDoc(collection(db, "Usuario"), { nombre: nombreValue, correo: correoValue, telefono: telefonoValue, cedula: cedulaValue, edad: edadValue, direccion: direccionValue, ubicacion: ubicacionValue, canton: cantonValue, distrito: distritoValue, seguro: seguroValue, tipoIncidente: tipoIncidenteValue, descripcion: descripcionValue });
+                const docRef = await addDoc(collection(db, "Usuario"), {cedula: cedulaValue, ubicacion: ubicacionValue, canton: cantonValue, distrito: distritoValue, seguro: seguroValue, tipoIncidente: tipoIncidenteValue, descripcion: descripcionValue });
                 console.log("Documento guardado con ID: ", docRef.id);
                 alert("Datos guardados correctamente"); 
                 formulario.reset(); // Limpiar formulario 
