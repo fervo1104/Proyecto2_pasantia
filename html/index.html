@@ -24,12 +24,24 @@
 
         <div class="card">
             <form id="formulario">
-                 <div class="form-group">
-                    <label class="form-respond">Cedula:</label>
-                    <input type="text" id="cedula" placeholder="Escribe tu cedula aquí" required class="input-field">
+
+                
+                <div class="form-group">
+                    <label class="form-respond">Tipo de identificación:</label>
+                    <select id="tipoIdentificacion" name="tipoIdentificacion">
+                        <option value="">-- Seleccione el tipo --</option>
+                        <option value="nacional">Cédula Nacional</option>
+                        <option value="extranjero">Cédula Extranjero (DIMEX)</option>
+                        <option value="pasaporte">Pasaporte</option>
+                    </select>
                 </div>
 
-                 <div class="form-group">
+                <div class="form-group">
+                    <label class="form-respond">Número de identificación:</label>
+                    <input type="text" id="cedula" placeholder="Escribe tu número de identificación" required class="input-field">
+                </div>
+
+                <div class="form-group">
                     <label class="form-respond">Nombre completo:</label>
                     <input type="text" id="nombre" placeholder="Escribe tu nombre aquí" required class="input-field">
                 </div>
@@ -44,22 +56,23 @@
                     <textarea id="telefono" placeholder="Número de teléfono" required class="input-field"></textarea>
                 </div>
 
-                 <div class="form-group">
+                <div class="form-group">
                     <label class="form-respond">Dirección del usuario:</label>
                     <input type="text" id="direccion" placeholder="Escribe tu dirección aquí" required class="input-field">
                 </div>
 
+                
                 <div class="form-group">
-                    <label class="form-respond">Ubicación del reporte:</label>
-                    <select id="ubiopciones" name="ubiopciones">
-                        <option value="">-- Seleccione la ubicación --</option>
+                    <label class="form-respond">Provincia:</label>
+                    <select id="provincia" name="provincia">
+                        <option value="">-- Seleccione la provincia --</option>
                         <option value="San José">San José</option>
                         <option value="Alajuela">Alajuela</option>
-                        <option value="Heredia">Heredia </option>
-                        <option value="Cartago">Cartago </option>
-                        <option value="Puntarenas ">Puntarenas </option>
-                        <option value="Guanacaste ">Guanacaste </option>
-                        <option value="Limón ">Limón </option>
+                        <option value="Heredia">Heredia</option>
+                        <option value="Cartago">Cartago</option>
+                        <option value="Puntarenas">Puntarenas</option>
+                        <option value="Guanacaste">Guanacaste</option>
+                        <option value="Limón">Limón</option>
                     </select>
                 </div>
                 
@@ -73,16 +86,26 @@
                     <input type="text" id="distrito" placeholder="Escribe el distrito aquí" required class="input-field">
                 </div>
 
-                 <div class="form-group">
+                <div class="form-group">
+                    <label class="form-respond">Cantón:</label>
+                    <input type="text" id="canton" placeholder="Escribe el cantón" required class="input-field">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-respond">Distrito:</label>
+                    <input type="text" id="distrito" placeholder="Escribe el distrito" required class="input-field">
+                </div>
+
+                <div class="form-group">
                     <label class="form-respond">Número del seguro:</label>
                     <input type="text" id="seguro" placeholder="Escribe el número del seguro" required class="input-field">
                 </div>
 
-                 <div class="form-group">
+                <div class="form-group">
                     <label class="form-respond">Edad del responsable:</label>
                     <select id="edadOpciones" name="edadOpciones">
                         <option value="">-- Seleccione la edad --</option>
-                        <option value="18-25">18-25 </option>
+                        <option value="18-25">18-25</option>
                         <option value="26-35">26-35</option>
                         <option value="36-45">36-45</option>
                         <option value="46-55">46-55</option>
@@ -90,18 +113,18 @@
                     </select>
                 </div>
 
-                 <div class="form-group">
+                <div class="form-group">
                     <label class="form-respond">Tipo de incidente:</label>
                     <select id="tipoIncidente" name="tipoIncidente">
                         <option value="">-- Seleccione tipo de incidente --</option>
                         <option value="Calles y Carreteras">Calles y Carreteras</option>
                         <option value="Luz, Agua y Electricidad">Luz, Agua y Electricidad</option>
-                        <option value=" Parques y Áreas Verdes">Parques y Áreas Verdes</option>
+                        <option value="Parques y Áreas Verdes">Parques y Áreas Verdes</option>
                         <option value="Edificios y Construcciones">Edificios y Construcciones</option>
                         <option value="Inundaciones y Drenajes">Inundaciones y Drenajes</option>
-                        <option value=" Situaciones de Peligro">Situaciones de Peligro</option>
+                        <option value="Situaciones de Peligro">Situaciones de Peligro</option>
                         <option value="Teléfono e Internet">Teléfono e Internet</option>
-                        <option value="otro">otro</option>
+                        <option value="otro">Otro</option>
                     </select>
                 </div>
 
@@ -117,6 +140,8 @@
 
     <p id="mensaje"></p>
     <script type="module" src="../js/prueba.js"></script>
+<<<<<<< HEAD
+=======
 
         <button onclick="verificarAcceso()">Ir al panel</button>
     <script> 
@@ -132,5 +157,6 @@
     </script>
     
 
+>>>>>>> 9c51e765e4271511b34421df2a83736f230a8efc
 </body>
 </html>

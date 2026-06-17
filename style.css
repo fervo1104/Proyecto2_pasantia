@@ -110,6 +110,18 @@ select.selected {
   color: #464646;
 }
 
+<<<<<<< HEAD
+#mensaje {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  background-color: #D1FAE5;
+  color: #065F46;
+  border: 1px solid #6EE7B7;
+=======
 /* Header y botón de administrador */
 
 .hdr {
@@ -144,5 +156,6 @@ select.selected {
 
 .navbar-item a:hover {
   background-color: #4e6797;
+>>>>>>> 9c51e765e4271511b34421df2a83736f230a8efc
 }
 
