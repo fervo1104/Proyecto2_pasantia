@@ -1,14 +1,7 @@
-como ver los formularios montados?
 
-
-  // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
     apiKey: "AIzaSyDAKsga5hYbw5Kerp4ZUg1cRhsER5ti0g8",
     authDomain: "formulario-seguro-2.firebaseapp.com",
@@ -19,7 +12,6 @@ como ver los formularios montados?
     measurementId: "G-4ZK3HYT2JX"
   };
 
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 
@@ -86,3 +78,12 @@ document.addEventListener('DOMContentLoaded',()=>{
     });    
 });
 
+function verificarAcceso() {
+    const contrasena = prompt("Ingresa la contraseña:");
+    const usuario = prompt("Ingresa el usuario:");
+    if (contrasena === "proyecto2" && usuario === "admin123") {
+        window.location.href = "../html/admin.html"; // ajusta la ruta si es necesario
+    } else {
+        alert("Contraseña o usuario incorrecto.");
+    }
+}

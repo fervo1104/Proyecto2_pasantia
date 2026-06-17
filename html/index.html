@@ -7,6 +7,16 @@
     <title>Tipo de Incidente</title>
     <link rel="stylesheet" href="../style.css">
 </head>
+<header>
+    <div class="hdr">
+        <nav>
+            <ul class="navbar-list">
+                <li class="navbar-item"><a href="#" onclick="verificarAcceso(); return false;">Acceso de administrador</a></li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
 <body>
     <div class="container">
         <h1>Formulario de Reporte de Incidente</h1>
@@ -97,9 +107,20 @@
 
     <p id="mensaje"></p>
     <script type="module" src="../js/prueba.js"></script>
-    <script>
 
-</script>
+        <button onclick="verificarAcceso()">Ir al panel</button>
+    <script> 
+        function verificarAcceso() {
+            const usuario = prompt("Ingresa el usuario:");
+            const contrasena = prompt("Ingresa la contraseña:");
+            if (usuario === "admin123" && contrasena === "proyecto2" ) {
+                window.location.href = "../html/admin.html";
+            } else {
+                alert("Contraseña o usuario incorrecto.");
+            }
+        }
+    </script>
+    
 
 </body>
 </html>
