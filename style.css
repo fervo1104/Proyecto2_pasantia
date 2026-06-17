@@ -110,6 +110,7 @@ select.selected {
   color: #464646;
 }
 
+<<<<<<< HEAD
 #mensaje {
   margin-top: 16px;
   padding: 12px;
@@ -120,5 +121,41 @@ select.selected {
   background-color: #D1FAE5;
   color: #065F46;
   border: 1px solid #6EE7B7;
+=======
+/* Header y botón de administrador */
+
+.hdr {
+  background-color: #94cbdf;
+  border-bottom: 1px solid #4b5f88;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+}
+
+.navbar-item a {
+  display: inline-block;
+  padding: 8px 16px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #4d78ab;
+  border: 1px solid #4b5f88;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.navbar-item a:hover {
+  background-color: #4e6797;
+>>>>>>> 9c51e765e4271511b34421df2a83736f230a8efc
 }
 
