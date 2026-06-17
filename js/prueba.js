@@ -87,7 +87,7 @@ document.getElementById("formulario").addEventListener("submit", async function 
  const analytics = getAnalytics(app);
  const formulario = document.getElementById('formulario'); 
     formulario.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Evitar que la página se recargue 
+        e.preventDefault(); 
         const nombreValue = document.getElementById('nombre').value; 
         const correoValue = document.getElementById('correo').value;
         const telefonoValue = document.getElementById('telefono').value;
