@@ -1,18 +1,4 @@
 
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBwfXO2bKyXp7FpSCtLI--AEkf92V8tCXY",
-  authDomain: "formulario-de-reportes-seguros.firebaseapp.com",
-  projectId: "formulario-de-reportes-seguros",
-  storageBucket: "formulario-de-reportes-seguros.firebasestorage.app",
-  messagingSenderId: "755403677023",
-  appId: "1:755403677023:web:9ebde31ce3def9ad852aea"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
 
 
@@ -55,7 +41,7 @@ const db = getFirestore(app);
                 console.error("Error al guardar: ", error);
             }
     }); 
- const formulario = document.getElementById('formulario'); 
+// const formulario = document.getElementById('formulario'); 
     formulario.addEventListener('submit', async (e) => {
         e.preventDefault(); 
         const cedulaValue = document.getElementById('cedula').value;
@@ -67,7 +53,7 @@ const db = getFirestore(app);
         const tipoIncidenteValue = document.getElementById('tipoIncidente').value;
         const descripcionValue = document.getElementById('descripcion').value;
             try {
-                const docRef = await addDoc(collection(db, "Usuario"), {cedula: cedulaValue, ubicacion: ubicacionValue, canton: cantonValue, distrito: distritoValue, seguro: seguroValue, tipoIncidente: tipoIncidenteValue, descripcion: descripcionValue });
+                const docRef = await addDoc(collection(db, "Reporte"), {cedula: cedulaValue, ubicacion: ubicacionValue, canton: cantonValue, distrito: distritoValue, seguro: seguroValue, tipoIncidente: tipoIncidenteValue, descripcion: descripcionValue });
                 console.log("Documento guardado con ID: ", docRef.id);
                 alert("Datos guardados correctamente"); 
                 formulario.reset(); // Limpiar formulario 
