@@ -15,10 +15,15 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+let analytics;
+try { analytics = getAnalytics(app); } catch (_) {}
 const db = getFirestore(app);
 
 const MASTER_PASSWORD = "123";
+
+window.verificarAcceso = function () {
+  window.location.href = "../html/admin.html";
+};
 
 function soloNumeros(texto) {
   for (let i = 0; i < texto.length; i++) {
