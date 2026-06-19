@@ -110,7 +110,6 @@ select.selected {
   color: #464646;
 }
 
-
 #mensaje {
   margin-top: 16px;
   padding: 12px;
@@ -122,6 +121,8 @@ select.selected {
   color: #065F46;
   border: 1px solid #6EE7B7;
 }
+
+
 .hdr {
   background-color: #94cbdf;
   border-bottom: 1px solid #4b5f88;
@@ -154,6 +155,4 @@ select.selected {
 
 .navbar-item a:hover {
   background-color: #4e6797;
-
 }
-
