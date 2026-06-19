@@ -1,191 +1,142 @@
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyDAKsga5hYbw5Kerp4ZUg1cRhsER5ti0g8",
+  authDomain: "formulario-seguro-2.firebaseapp.com",
+  projectId: "formulario-seguro-2",
+  storageBucket: "formulario-seguro-2.firebasestorage.app",
+  messagingSenderId: "518898164803",
+  appId: "1:518898164803:web:57a1faf033d5c62f5f60f6",
+  measurementId: "G-4ZK3HYT2JX"
+};
 
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getFirestore(app);
 
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+function soloNumeros(texto) {
+  for (let i = 0; i < texto.length; i++) {
+    if (texto[i] < "0" || texto[i] > "9") return false;
+  }
+  return true;
+}
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyDAKsga5hYbw5Kerp4ZUg1cRhsER5ti0g8",
-    authDomain: "formulario-seguro-2.firebaseapp.com",
-    projectId: "formulario-seguro-2",
-    storageBucket: "formulario-seguro-2.firebasestorage.app",
-    messagingSenderId: "518898164803",
-    appId: "1:518898164803:web:57a1faf033d5c62f5f60f6",
-    measurementId: "G-4ZK3HYT2JX"
-  };
+function soloLetras(texto) {
+  const permitidas = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ áéíóúÁÉÍÓÚñÑ";
+  for (let i = 0; i < texto.length; i++) {
+    if (!permitidas.includes(texto[i])) return false;
+  }
+  return true;
+}
 
- const app = initializeApp(firebaseConfig);
- const analytics = getAnalytics(app);
- const db = getFirestore(app);
+document.getElementById("cedula").addEventListener("input", function () {
+  this.setCustomValidity("");
+});
 
- const formulario = document.getElementById('formulario'); 
-    formulario.addEventListener('submit', async (e) => {
-        e.preventDefault(); 
-        const TipoidentificaciónValue = document.getElementById('tipoIdentificacion').value;
-        const NúmeroidentificaciónValue = document.getElementById('cedula').value;
-        const nombreValue = document.getElementById('nombre').value;
-        const correoValue = document.getElementById('correo').value;
-        const telefonoValue = document.getElementById('telefono').value;
-        const cedulaValue = document.getElementById('cedula').value;
-        const edadValue = document.getElementById('edadOpciones').value;
-        const direccionValue = document.getElementById('direccion').value;
-        
-            try {
-                const docRef = await addDoc(collection(db, "Usuario"), { nombre: nombreValue, correo: correoValue, telefono: telefonoValue, cedula: cedulaValue, edad: edadValue, direccion: direccionValue, tipoIdentificacion: TipoidentificaciónValue, Númeroidentificación: NúmeroidentificaciónValue });
-                console.log("Documento guardado con ID: ", docRef.id);
-                alert("Datos guardados correctamente"); 
-                formulario.reset(); // Limpiar formulario 
-            } catch (error) { 
-                console.error("Error al guardar: ", error);
-            }
-    }); 
-// const formulario = document.getElementById('formulario'); 
-    formulario.addEventListener('submit', async (e) => {
-        e.preventDefault(); 
-        const cedulaValue = document.getElementById('cedula').value;
-        const direccionValue = document.getElementById('direccion').value;
-        const ubicacionValue = document.getElementById('ubiopciones').value;
-        const cantonValue = document.getElementById('cantón').value;
-        const distritoValue = document.getElementById('distrito').value;
-        const seguroValue = document.getElementById('seguro').value;
-        const tipoIncidenteValue = document.getElementById('tipoIncidente').value;
-        const descripcionValue = document.getElementById('descripcion').value;
-            try {
-                const docRef = await addDoc(collection(db, "Reporte"), {cedula: cedulaValue, ubicacion: ubicacionValue, canton: cantonValue, distrito: distritoValue, seguro: seguroValue, tipoIncidente: tipoIncidenteValue, descripcion: descripcionValue });
-                console.log("Documento guardado con ID: ", docRef.id);
-                alert("Datos guardados correctamente"); 
-                formulario.reset(); // Limpiar formulario 
-            } catch (error) { 
-                console.error("Error al guardar: ", error);
-            }
+document.getElementById("nombre").addEventListener("input", function () {
+  this.setCustomValidity("");
+});
+
+document.getElementById("formulario").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const campoCedula = document.getElementById("cedula");
+  const campoNombre = document.getElementById("nombre");
+
+  if (!soloNumeros(campoCedula.value)) {
+    campoCedula.setCustomValidity("Solo se permiten números en este campo");
+    campoCedula.reportValidity();
+    return;
+  }
+
+  if (!soloLetras(campoNombre.value)) {
+    campoNombre.setCustomValidity("Solo se permiten letras en este campo");
+    campoNombre.reportValidity();
+    return;
+  }
+
+  const tipoIdentificacion = document.getElementById("tipoIdentificacion").value;
+  const cedula = document.getElementById("cedula").value;
+  const nombre = document.getElementById("nombre").value;
+  const correo = document.getElementById("correo").value;
+  const telefono = document.getElementById("telefono").value;
+  const edad = document.getElementById("edadOpciones").value;
+  const direccion = document.getElementById("direccion").value;
+  const provincia = document.getElementById("provincia").value;
+  const canton = document.getElementById("canton").value;
+  const distrito = document.getElementById("distrito").value;
+  const seguro = document.getElementById("seguro").value;
+  const tipoIncidente = document.getElementById("tipoIncidente").value;
+  const descripcion = document.getElementById("descripcion").value;
+
+  try {
+    console.log("Guardando en Usuario...", {
+      tipoIdentificacion,
+      cedula,
+      nombre,
+      correo,
+      telefono,
+      edad,
+      direccion
     });
 
+    const usuarioRef = await addDoc(collection(db, "Usuario"), {
+      tipoIdentificacion,
+      cedula,
+      nombre,
+      correo,
+      telefono,
+      edad,
+      direccion
+    });
+    console.log("Usuario guardado con ID:", usuarioRef.id);
 
+    console.log("Guardando en Reporte...", {
+      cedula,
+      provincia,
+      canton,
+      distrito,
+      seguro,
+      tipoIncidente,
+      descripcion
+    });
 
+    const reporteRef = await addDoc(collection(db, "Reporte"), {
+      cedula,
+      provincia,
+      canton,
+      distrito,
+      seguro,
+      tipoIncidente,
+      descripcion
+    });
+    console.log("Reporte guardado con ID:", reporteRef.id);
 
+    document.getElementById("mensaje").textContent = "¡Reporte enviado correctamente!";
+    document.getElementById("formulario").reset();
+  } catch (error) {
+    console.error("Error completo:", error);
+    console.error("Código de error:", error.code);
+    console.error("Mensaje:", error.message);
+    document.getElementById("mensaje").textContent = `Error: ${error.message}`;
+  }
+});
 
 function verificarAcceso() {
-    const contrasena = prompt("Ingresa la contraseña:");
-    const usuario = prompt("Ingresa el usuario:");
-    if (contrasena === "proyecto2" && usuario === "admin123") {
-        window.location.href = "../html/admin.html"; // ajusta la ruta si es necesario
-    } else {
-        alert("Contraseña o usuario incorrecto.");
-    }
+  const usuario = prompt("Ingresa el usuario:");
+  const contrasena = prompt("Ingresa la contraseña:");
+  if (usuario === "admin123" && contrasena === "proyecto2") {
+    window.location.href = "../html/admin.html";
+  } else {
+    alert("Contraseña o usuario incorrecto.");
+  }
 }
 
-// Validaciones
-function soloNumeros(texto) {
-  let esValido = true;
-  for (let i = 0; i < texto.length; i++) {
-    let caracter = texto[i];
-    if (caracter < "0" || caracter > "9") {
-      esValido = false;
-    }
-  }
-  return esValido;
-}
-
-function soloLetras(texto) {
-  let letrasPermitidas = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ áéíóúÁÉÍÓÚñÑ";
-  let esValido = true;
-  for (let i = 0; i < texto.length; i++) {
-    let caracter = texto[i];
-    if (letrasPermitidas.includes(caracter) === false) {
-      esValido = false;
-    }
-  }
-  return esValido;
-}
-
-// Limpiar errores cuando el usuario corrija
-document.getElementById("cedula").addEventListener("input", function() {
-  this.setCustomValidity("");
-});
-
-document.getElementById("nombre").addEventListener("input", function() {
-  this.setCustomValidity("");
-});
-
-// Envío del formulario
-document.getElementById("formulario").addEventListener("submit", async function (e) {
-  e.preventDefault();
-
-  var campoCedula = document.getElementById("cedula");
-  var campoNombre = document.getElementById("nombre");
-
-  if (!soloNumeros(campoCedula.value)) {
-    campoCedula.setCustomValidity("Solo se permiten números en este campo");
-    campoCedula.reportValidity();
-    return;
-  }
-
-  if (!soloLetras(campoNombre.value)) {
-    campoNombre.setCustomValidity("Solo se permiten letras en este campo");
-    campoNombre.reportValidity();
-    return;
-  }
-
-  document.getElementById("mensaje").textContent = "¡Reporte enviado correctamente!";
-  document.getElementById("formulario").reset();
-});
+window.verificarAcceso = verificarAcceso;
 
 
 
-// Validaciones
-function soloNumeros(texto) {
-  let esValido = true;
-  for (let i = 0; i < texto.length; i++) {
-    let caracter = texto[i];
-    if (caracter < "0" || caracter > "9") {
-      esValido = false;
-    }
-  }
-  return esValido;
-}
 
-function soloLetras(texto) {
-  let letrasPermitidas = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ áéíóúÁÉÍÓÚñÑ";
-  let esValido = true;
-  for (let i = 0; i < texto.length; i++) {
-    let caracter = texto[i];
-    if (letrasPermitidas.includes(caracter) === false) {
-      esValido = false;
-    }
-  }
-  return esValido;
-}
-
-// Limpiar errores cuando el usuario corrija
-document.getElementById("cedula").addEventListener("input", function() {
-  this.setCustomValidity("");
-});
-
-document.getElementById("nombre").addEventListener("input", function() {
-  this.setCustomValidity("");
-});
-
-// Envío del formulario
-document.getElementById("formulario").addEventListener("submit", async function (e) {
-  e.preventDefault();
-
-  var campoCedula = document.getElementById("cedula");
-  var campoNombre = document.getElementById("nombre");
-
-  if (!soloNumeros(campoCedula.value)) {
-    campoCedula.setCustomValidity("Solo se permiten números en este campo");
-    campoCedula.reportValidity();
-    return;
-  }
-
-  if (!soloLetras(campoNombre.value)) {
-    campoNombre.setCustomValidity("Solo se permiten letras en este campo");
-    campoNombre.reportValidity();
-    return;
-  }
-
-  document.getElementById("mensaje").textContent = "¡Reporte enviado correctamente!";
-  document.getElementById("formulario").reset();
-});
