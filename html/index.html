@@ -7,17 +7,17 @@
     <title>Tipo de Incidente</title>
     <link rel="stylesheet" href="../style.css">
 </head>
-<body>
 <header>
     <div class="hdr">
         <nav>
             <ul class="navbar-list">
                 <li class="navbar-item"><a href="#" onclick="verificarAcceso(); return false;">Acceso de administrador</a></li>
-
+                
             </ul>
         </nav>
     </div>
 </header>
+<body>
     <div class="container">
         <h1>Formulario de Reporte de Incidente</h1>
         <p>Cuéntanos aquí tu problema</p>
@@ -75,18 +75,16 @@
                         <option value="Limón">Limón</option>
                     </select>
                 </div>
-            
-
-                <div class="form-group">
-                    <label class="form-respond">Distrito:</label>
-                    <input type="text" id="distrito" placeholder="Escribe el distrito aquí" required class="input-field">
-                </div>
 
                 <div class="form-group">
                     <label class="form-respond">Cantón:</label>
                     <input type="text" id="canton" placeholder="Escribe el cantón" required class="input-field">
                 </div>
 
+                <div class="form-group">
+                    <label class="form-respond">Distrito:</label>
+                    <input type="text" id="distrito" placeholder="Escribe el distrito" required class="input-field">
+                </div>
 
                 <div class="form-group">
                     <label class="form-respond">Número del seguro:</label>
@@ -133,7 +131,18 @@
     <p id="mensaje"></p>
     <script type="module" src="../js/prueba.js"></script>
 
-
+        <button onclick="verificarAcceso()">Ir al panel</button>
+    <script> 
+        function verificarAcceso() {
+            const usuario = prompt("Ingresa el usuario:");
+            const contrasena = prompt("Ingresa la contraseña:");
+            if (usuario === "admin123" && contrasena === "proyecto2" ) {
+                window.location.href = "../html/admin.html";
+            } else {
+                alert("Contraseña o usuario incorrecto.");
+            }
+        }
+    </script>
     
 
 </body>
