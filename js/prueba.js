@@ -2,6 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+import { encryptData } from "./crypto.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDAKsga5hYbw5Kerp4ZUg1cRhsER5ti0g8",
@@ -16,6 +17,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
+
+const MASTER_PASSWORD = "123";
 
 function soloNumeros(texto) {
   for (let i = 0; i < texto.length; i++) {
@@ -45,6 +48,7 @@ document.getElementById("formulario").addEventListener("submit", async function 
 
   const campoCedula = document.getElementById("cedula");
   const campoNombre = document.getElementById("nombre");
+  const mensaje = document.getElementById("mensaje");
 
   if (!soloNumeros(campoCedula.value)) {
     campoCedula.setCustomValidity("Solo se permiten números en este campo");
@@ -58,85 +62,39 @@ document.getElementById("formulario").addEventListener("submit", async function 
     return;
   }
 
-  const tipoIdentificacion = document.getElementById("tipoIdentificacion").value;
-  const cedula = document.getElementById("cedula").value;
-  const nombre = document.getElementById("nombre").value;
-  const correo = document.getElementById("correo").value;
-  const telefono = document.getElementById("telefono").value;
-  const edad = document.getElementById("edadOpciones").value;
-  const direccion = document.getElementById("direccion").value;
-  const provincia = document.getElementById("provincia").value;
-  const canton = document.getElementById("canton").value;
-  const distrito = document.getElementById("distrito").value;
-  const seguro = document.getElementById("seguro").value;
-  const tipoIncidente = document.getElementById("tipoIncidente").value;
-  const descripcion = document.getElementById("descripcion").value;
-
   try {
-    console.log("Guardando en Usuario...", {
-      tipoIdentificacion,
+    const [cedula, nombre, correo, telefono, direccion, descripcion] = await Promise.all([
+      encryptData(campoCedula.value, MASTER_PASSWORD),
+      encryptData(campoNombre.value, MASTER_PASSWORD),
+      encryptData(document.getElementById("correo").value, MASTER_PASSWORD),
+      encryptData(document.getElementById("telefono").value, MASTER_PASSWORD),
+      encryptData(document.getElementById("direccion").value, MASTER_PASSWORD),
+      encryptData(document.getElementById("descripcion").value, MASTER_PASSWORD),
+    ]);
+
+    await addDoc(collection(db, "formularios"), {
+      tipoIdentificacion: document.getElementById("tipoIdentificacion").value,
       cedula,
       nombre,
       correo,
       telefono,
-      edad,
-      direccion
+      direccion,
+      provincia: document.getElementById("provincia").value,
+      distrito: document.getElementById("distrito").value,
+      canton: document.getElementById("canton").value,
+      seguro: document.getElementById("seguro").value,
+      edadOpciones: document.getElementById("edadOpciones").value,
+      tipoIncidente: document.getElementById("tipoIncidente").value,
+      descripcion,
+      fecha: new Date().toISOString(),
     });
 
-    const usuarioRef = await addDoc(collection(db, "Usuario"), {
-      tipoIdentificacion,
-      cedula,
-      nombre,
-      correo,
-      telefono,
-      edad,
-      direccion
-    });
-    console.log("Usuario guardado con ID:", usuarioRef.id);
-
-    console.log("Guardando en Reporte...", {
-      cedula,
-      provincia,
-      canton,
-      distrito,
-      seguro,
-      tipoIncidente,
-      descripcion
-    });
-
-    const reporteRef = await addDoc(collection(db, "Reporte"), {
-      cedula,
-      provincia,
-      canton,
-      distrito,
-      seguro,
-      tipoIncidente,
-      descripcion
-    });
-    console.log("Reporte guardado con ID:", reporteRef.id);
-
-    document.getElementById("mensaje").textContent = "¡Reporte enviado correctamente!";
-    document.getElementById("formulario").reset();
+    mensaje.textContent = "Reporte enviado exitosamente.";
+    mensaje.style.color = "green";
+    this.reset();
   } catch (error) {
-    console.error("Error completo:", error);
-    console.error("Código de error:", error.code);
-    console.error("Mensaje:", error.message);
-    document.getElementById("mensaje").textContent = `Error: ${error.message}`;
+    console.error("Error al enviar el formulario:", error);
+    mensaje.textContent = "Error al enviar el reporte. Intenta de nuevo.";
+    mensaje.style.color = "red";
   }
 });
-
-function verificarAcceso() {
-  const usuario = prompt("Ingresa el usuario:");
-  const contrasena = prompt("Ingresa la contraseña:");
-  if (usuario === "admin123" && contrasena === "proyecto2") {
-    window.location.href = "../html/admin.html";
-  } else {
-    alert("Contraseña o usuario incorrecto.");
-  }
-}
-
-window.verificarAcceso = verificarAcceso;
-
-
-
-
