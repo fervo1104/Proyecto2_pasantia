@@ -1,71 +1,75 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tipo de Incidente</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<header>
-    <div class="hdr">
-        <nav>
-            <ul class="navbar-list">
-                <li class="navbar-item"><a href="#" onclick="verificarAcceso(); return false;">Acceso de administrador</a></li>
-                
-            </ul>
-        </nav>
-    </div>
-</header>
 <body>
-    <div class="container">
-        <h1>Formulario de Reporte de Incidente</h1>
-        <p>Cuéntanos aquí tu problema</p>
-
-        <div class="card">
-            <form id="formulario">
-
+    <header>
+        <div class="hdr">
+            <nav>
+                <ul class="navbar-list">
+                    <li class="navbar-item"><a href="#" onclick="verificarAcceso(); return false;">Acceso de administrador</a></li>
                 
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+         <h1>Formulario de Reporte de Incidente</h1>
+         <p>Cuéntanos aquí tu problema</p>
+
+        <form id="formulario" class="card" novalidate>
+            <fieldset>
+                <legend>Datos de contacto</legend>
+
                 <div class="form-group">
-                    <label class="form-respond">Tipo de identificación:</label>
-                    <select id="tipoIdentificacion" name="tipoIdentificacion">
-                        <option value="">-- Seleccione el tipo --</option>
+                    <label for="tipo_identificacion">Tipo de identificación</label>
+                    <select id="tipo_identificacion" name="tipo_identificacion" required>
+                        <option value="">-- Selecciona --</option>
                         <option value="nacional">Cédula Nacional</option>
                         <option value="extranjero">Cédula Extranjero (DIMEX)</option>
                         <option value="pasaporte">Pasaporte</option>
                     </select>
+                    <small class="field-error" id="error-tipo_identificacion"></small>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-respond">Número de identificación:</label>
-                    <input type="text" id="cedula" placeholder="Escribe tu número de identificación" required class="input-field">
+                    <label for="numero_identificacion">Número de identificación</label>
+                    <input type="text" id="numero_identificacion" name="numero_identificacion"
+                           placeholder="Ej. 109870456" required maxlength="20">
+                    <small class="field-error" id="error-numero_identificacion"></small>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-respond">Nombre completo:</label>
-                    <input type="text" id="nombre" placeholder="Escribe tu nombre aquí" required class="input-field">
+                    <label for="nombre">Nombre completo</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required maxlength="80">
+                    <small class="field-error" id="error-nombre"></small>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-respond">Correo Electrónico:</label>
-                    <textarea id="correo" placeholder="Escribe tu correo electrónico" required class="input-field"></textarea>
+                    <label for="correo">Correo electrónico</label>
+                    <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" required maxlength="100">
+                    <small class="field-error" id="error-correo"></small>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-respond">Número de teléfono:</label>
-                    <textarea id="telefono" placeholder="Número de teléfono" required class="input-field"></textarea>
+                    <label for="telefono">Número de teléfono</label>
+                    <input type="text" id="telefono" name="telefono" placeholder="Escribe tu número de teléfono" required maxlength="20">
+                    <small class="field-error" id="error-telefono"></small>
                 </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Ubicación</legend>
 
                 <div class="form-group">
-                    <label class="form-respond">Dirección del usuario:</label>
-                    <input type="text" id="direccion" placeholder="Escribe tu dirección aquí" required class="input-field">
-                </div>
-
-                
-                <div class="form-group">
-                    <label class="form-respond">Provincia:</label>
-                    <select id="provincia" name="provincia">
-                        <option value="">-- Seleccione la provincia --</option>
+                    <label for="provincia">Provincia</label>
+                    <select id="provincia" name="provincia" required>
+                        <option value="">-- Selecciona la provincia --</option>
                         <option value="San José">San José</option>
                         <option value="Alajuela">Alajuela</option>
                         <option value="Heredia">Heredia</option>
@@ -74,38 +78,34 @@
                         <option value="Guanacaste">Guanacaste</option>
                         <option value="Limón">Limón</option>
                     </select>
+                    <small class="field-error" id="error-provincia"></small>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-respond">Cantón:</label>
-                    <input type="text" id="canton" placeholder="Escribe el cantón" required class="input-field">
+                    <label for="canton">Cantón</label>
+                    <input type="text" id="canton" name="canton" placeholder="Escribe el cantón" required maxlength="60">
+                    <small class="field-error" id="error-canton"></small>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-respond">Distrito:</label>
-                    <input type="text" id="distrito" placeholder="Escribe el distrito" required class="input-field">
+                    <label for="distrito">Distrito</label>
+                    <input type="text" id="distrito" name="distrito" placeholder="Escribe el distrito" required maxlength="60">
+                    <small class="field-error" id="error-distrito"></small>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-respond">Número del seguro:</label>
-                    <input type="text" id="seguro" placeholder="Escribe el número del seguro" required class="input-field">
+                    <label for="direccion">Dirección exacta</label>
+                    <input type="text" id="direccion" name="direccion" placeholder="Detalles exactos del lugar" required maxlength="200">
+                    <small class="field-error" id="error-direccion"></small>
                 </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Detalle del incidente</legend>
 
                 <div class="form-group">
-                    <label class="form-respond">Edad del responsable:</label>
-                    <select id="edadOpciones" name="edadOpciones">
-                        <option value="">-- Seleccione la edad --</option>
-                        <option value="18-25">18-25</option>
-                        <option value="26-35">26-35</option>
-                        <option value="36-45">36-45</option>
-                        <option value="46-55">46-55</option>
-                        <option value="56-65">56-65</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-respond">Tipo de incidente:</label>
-                    <select id="tipoIncidente" name="tipoIncidente">
+                    <label for="tipo_incidente">Tipo de incidente</label>
+                    <select id="tipo_incidente" name="tipo_incidente" required>
                         <option value="">-- Seleccione tipo de incidente --</option>
                         <option value="Calles y Carreteras">Calles y Carreteras</option>
                         <option value="Luz, Agua y Electricidad">Luz, Agua y Electricidad</option>
@@ -116,23 +116,26 @@
                         <option value="Teléfono e Internet">Teléfono e Internet</option>
                         <option value="otro">Otro</option>
                     </select>
+                    <small class="field-error" id="error-tipo_incidente"></small>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-respond">Descripción del reporte:</label>
-                    <textarea id="descripcion" placeholder="Describe el incidente" required class="input-field"></textarea>
+                    <label for="descripcion">Descripción</label>
+                    <textarea id="descripcion" name="descripcion" placeholder="Describe el incidente" required minlength="10" maxlength="1000"></textarea>
+                    <small class="field-error" id="error-descripcion"></small>
                 </div>
+            </fieldset>
+            <br>
+            
+            <button type="submit" class="btn-primary">Enviar reporte</button>
+        </form>
 
-                <button type="submit" class="btn-primary">Enviar reporte</button>
-            </form>
-        </div>
-    </div>
+        <p id="mensaje" class="mensaje" role="status" aria-live="polite"></p>
+    </main>
 
-    <p id="mensaje"></p>
-    <script type="module" src="../js/prueba.js"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
 
-        <button onclick="verificarAcceso()">Ir al panel</button>
-    <script> 
+        <script>
         function verificarAcceso() {
             const usuario = prompt("Ingresa el usuario:");
             const contrasena = prompt("Ingresa la contraseña:");
@@ -143,7 +146,5 @@
             }
         }
     </script>
-    
-
 </body>
 </html>

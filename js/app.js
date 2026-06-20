@@ -1,124 +1,123 @@
-// Configuración Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyBwfXO2bKyXp7FpSCtLI--AEkf92V8tCXY",
-  authDomain: "formulario-de-reportes-seguros.firebaseapp.com",
-  projectId: "formulario-de-reportes-seguros",
-  storageBucket: "formulario-de-reportes-seguros.firebasestorage.app",
-  messagingSenderId: "755403677023",
-  appId: "1:755403677023:web:9ebde31ce3def9ad852aea"
+/**
+ * Validación del lado del cliente: solo mejora la experiencia de uso.
+ * La validación que realmente protege los datos ocurre en el servidor (app.py).
+ */
+
+const PATTERNS = {
+  numero_identificacion: /^[A-Za-z0-9]{5,20}$/,
+  nombre: /^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,80}$/,
+  correo: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+  telefono: /^[0-9+\- ]{7,20}$/,
+  direccion: /^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 .,#\-/]{5,200}$/,
+  canton: /^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,60}$/,
+  distrito: /^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,60}$/,
+  descripcion: /^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 .,;:¡!¿?\-\n]{10,1000}$/,
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
-import { encryptData } from "./crypto.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDAKsga5hYbw5Kerp4ZUg1cRhsER5ti0g8",
-  authDomain: "formulario-seguro-2.firebaseapp.com",
-  projectId: "formulario-seguro-2",
-  storageBucket: "formulario-seguro-2.firebasestorage.app",
-  messagingSenderId: "518898164803",
-  appId: "1:518898164803:web:57a1faf033d5c62f5f60f6",
-  measurementId: "G-4ZK3HYT2JX"
+// Mensaje específico que se muestra debajo de cada campo cuando es inválido.
+const MESSAGES = {
+  tipo_identificacion: 'Selecciona un tipo de identificación.',
+  numero_identificacion: 'Solo letras y números, entre 5 y 20 caracteres.',
+  nombre: 'Solo letras y espacios, entre 2 y 80 caracteres.',
+  correo: 'Ingresa un correo válido, por ejemplo nombre@dominio.com.',
+  telefono: 'Solo números, espacios, "+" o "-", entre 7 y 20 caracteres.',
+  provincia: 'Selecciona una provincia.',
+  canton: 'Solo letras y espacios, entre 2 y 60 caracteres.',
+  distrito: 'Solo letras y espacios, entre 2 y 60 caracteres.',
+  direccion: 'Usa letras, números y puntuación básica, entre 5 y 200 caracteres.',
+  tipo_incidente: 'Selecciona un tipo de incidente.',
+  descripcion: 'Describe el incidente con al menos 10 caracteres (máximo 1000).',
 };
 
-const app = initializeApp(firebaseConfig);
-let analytics;
-try { analytics = getAnalytics(app); } catch (_) {}
-const db = getFirestore(app);
+const form = document.getElementById('formulario');
+const mensaje = document.getElementById('mensaje');
 
-const MASTER_PASSWORD = "123";
+function setFieldState(field, isValid) {
+  const group = field.closest('.form-group');
+  if (!group) return;
+  group.classList.toggle('invalid', !isValid);
+  field.setAttribute('aria-invalid', String(!isValid));
 
-window.verificarAcceso = function () {
-  window.location.href = "../html/admin.html";
-};
-
-function soloNumeros(texto) {
-  for (let i = 0; i < texto.length; i++) {
-    if (texto[i] < "0" || texto[i] > "9") return false;
+  const errorEl = document.getElementById(`error-${field.name}`);
+  if (errorEl) {
+    errorEl.textContent = isValid ? '' : ` ${MESSAGES[field.name] || 'Este campo no es válido.'}`;
   }
-  return true;
 }
 
-function soloLetras(texto) {
-  const permitidas = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ áéíóúÁÉÍÓÚñÑ";
-  for (let i = 0; i < texto.length; i++) {
-    if (!permitidas.includes(texto[i])) return false;
-  }
-  return true;
+function clearAllFieldStates() {
+  form.querySelectorAll('input, select, textarea').forEach((field) => {
+    field.closest('.form-group')?.classList.remove('invalid');
+    field.removeAttribute('aria-invalid');
+    const errorEl = document.getElementById(`error-${field.name}`);
+    if (errorEl) errorEl.textContent = '';
+  });
 }
 
-document.getElementById("cedula").addEventListener("input", function () {
-  this.setCustomValidity("");
+function validateField(field) {
+  const name = field.name;
+  if (field.tagName === 'SELECT') {
+    const valid = field.value !== '';
+    setFieldState(field, valid);
+    return valid;
+  }
+  const pattern = PATTERNS[name];
+  const valid = pattern ? pattern.test(field.value.trim()) : field.value.trim().length > 0;
+  setFieldState(field, valid);
+  return valid;
+}
+
+form.querySelectorAll('input, select, textarea').forEach((field) => {
+  field.addEventListener('input', () => validateField(field));
+  field.addEventListener('blur', () => validateField(field));
 });
 
-document.getElementById("nombre").addEventListener("input", function () {
-  this.setCustomValidity("");
-});
-
-document.getElementById("formulario").addEventListener("submit", async function (e) {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const campoCedula = document.getElementById("cedula");
-  const campoNombre = document.getElementById("nombre");
-  const mensaje = document.getElementById("mensaje");
+  let allValid = true;
+  let firstInvalidField = null;
+  form.querySelectorAll('input, select, textarea').forEach((field) => {
+    if (!validateField(field)) {
+      allValid = false;
+      if (!firstInvalidField) firstInvalidField = field;
+    }
+  });
 
-  if (!soloNumeros(campoCedula.value)) {
-    campoCedula.setCustomValidity("Solo se permiten números en este campo");
-    campoCedula.reportValidity();
+  mensaje.classList.remove('ok', 'error');
+
+  if (!allValid) {
+    mensaje.textContent = ' Hay campos marcados en rojo: revisa el mensaje debajo de cada uno antes de enviar.';
+    mensaje.classList.add('error');
+    if (firstInvalidField) {
+      firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstInvalidField.focus();
+    }
     return;
   }
 
-  if (!soloLetras(campoNombre.value)) {
-    campoNombre.setCustomValidity("Solo se permiten letras en este campo");
-    campoNombre.reportValidity();
-    return;
-  }
-
-  document.getElementById("mensaje").textContent = "¡Reporte enviado correctamente!";
-  document.getElementById("formulario").reset();
-});
-
+  const submitBtn = form.querySelector('.btn-primary');
+  submitBtn.disabled = true;
 
   try {
-    const [cedula, nombre, correo, telefono, direccion, descripcion] = await Promise.all([
-      encryptData(campoCedula.value, MASTER_PASSWORD),
-      encryptData(campoNombre.value, MASTER_PASSWORD),
-      encryptData(document.getElementById("correo").value, MASTER_PASSWORD),
-      encryptData(document.getElementById("telefono").value, MASTER_PASSWORD),
-      encryptData(document.getElementById("direccion").value, MASTER_PASSWORD),
-      encryptData(document.getElementById("descripcion").value, MASTER_PASSWORD),
-    ]);
-
-    await addDoc(collection(db, "formularios"), {
-      tipoIdentificacion: document.getElementById("tipoIdentificacion").value,
-      cedula,
-      nombre,
-      correo,
-      telefono,
-      direccion,
-      provincia: document.getElementById("provincia").value,
-      distrito: document.getElementById("distrito").value,
-      canton: document.getElementById("canton").value,
-      seguro: document.getElementById("seguro").value,
-      edadOpciones: document.getElementById("edadOpciones").value,
-      tipoIncidente: document.getElementById("tipoIncidente").value,
-      descripcion,
-      fecha: new Date().toISOString(),
+    const response = await fetch('/enviar', {
+      method: 'POST',
+      body: new FormData(form),
     });
+    const data = await response.json();
 
-    mensaje.textContent = "Reporte enviado exitosamente.";
-    mensaje.style.color = "green";
-    this.reset();
-  } catch (error) {
-    console.error("Error al enviar el formulario:", error);
-    mensaje.textContent = "Error al enviar el reporte. Intenta de nuevo.";
-    mensaje.style.color = "red";
+    if (data.ok) {
+      mensaje.textContent = ` ${data.mensaje}`;
+      mensaje.classList.add('ok');
+      form.reset();
+      clearAllFieldStates();
+    } else {
+      mensaje.textContent = ` ${data.mensaje}`;
+      mensaje.classList.add('error');
+    }
+  } catch (err) {
+    mensaje.textContent = 'No se pudo enviar el reporte. Intenta de nuevo.';
+    mensaje.classList.add('error');
+  } finally {
+    submitBtn.disabled = false;
   }
 });
