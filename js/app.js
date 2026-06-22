@@ -3,30 +3,99 @@
  * La validación que realmente protege los datos ocurre en el servidor (app.py).
  */
 
-const PATTERNS = {
-  numero_identificacion: /^[A-Za-z0-9]{5,20}$/,
-  nombre: /^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,80}$/,
-  correo: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
-  telefono: /^[0-9+\- ]{7,20}$/,
-  direccion: /^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 .,#\-/]{5,200}$/,
-  canton: /^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,60}$/,
-  distrito: /^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,60}$/,
-  descripcion: /^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 .,;:¡!¿?\-\n]{10,1000}$/,
-};
 
+  function soloNumeros(texto) {
+  for (let i = 0; i < texto.length; i++) {
+    if (texto[i] < "0" || texto[i] > "9") return false;
+  }
+  return true;
+  }
+
+  function soloLetras(texto) {
+  const permitidas = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ áéíóúÁÉÍÓÚñÑ";
+  for (let i = 0; i < texto.length; i++) {
+    if (!permitidas.includes(texto[i])) return false;
+  }
+  return true;
+}
+
+document.getElementById("cedula").addEventListener("input", function () {
+  this.setCustomValidity("");
+});
+
+document.getElementById("nombre").addEventListener("input", function () {
+  this.setCustomValidity("");
+});
+
+document.getElementById("nombre").addEventListener("input", function () {
+  this.setCustomValidity("");
+});
+
+document.getElementById("telefono").addEventListener("input", function () {
+  this.setCustomValidity("");
+});
+
+document.getElementById("edadOpciones").addEventListener("input", function () {
+  this.setCustomValidity("");
+});
+
+document.getElementById("canton").addEventListener("input", function () {
+  this.setCustomValidity("");
+});
+
+document.getElementById("distrito").addEventListener("input", function () {
+  this.setCustomValidity("");
+});
+
+document.getElementById("formulario").addEventListener("submit", async function (e) {
+  if (!soloNumeros(cedula)) {
+    document.getElementById("cedula").setCustomValidity("Solo se permiten números en este campo");
+    document.getElementById("cedula").reportValidity();
+    return;
+  }
+
+  if (!soloLetras(nombre)) {
+    document.getElementById("nombre").setCustomValidity("Solo se permiten letras en este campo");
+    document.getElementById("nombre").reportValidity();
+    return;
+  }
+
+   if (!soloNumeros(telefono)) {
+    document.getElementById("telefono").setCustomValidity("Solo se permiten números en este campo");
+    document.getElementById("telefono").reportValidity();
+    return;
+  }
+
+   if (!soloNumeros(edad)) {
+    document.getElementById("edadOpciones").setCustomValidity("Solo se permiten números en este campo");
+    document.getElementById("edadOpciones").reportValidity();
+    return;
+  }
+
+   if (!soloLetras(canton)) {
+    document.getElementById("canton").setCustomValidity("Solo se permiten letras en este campo");
+    document.getElementById("canton").reportValidity();
+    return;
+  }
+   if (!soloLetras(distrito)) {
+    document.getElementById("distrito").setCustomValidity("Solo se permiten letras en este campo");
+    document.getElementById("distrito").reportValidity();
+    return;
+  }
+});
 // Mensaje específico que se muestra debajo de cada campo cuando es inválido.
 const MESSAGES = {
   tipo_identificacion: 'Selecciona un tipo de identificación.',
-  numero_identificacion: 'Solo letras y números, entre 5 y 20 caracteres.',
-  nombre: 'Solo letras y espacios, entre 2 y 80 caracteres.',
-  correo: 'Ingresa un correo válido, por ejemplo nombre@dominio.com.',
-  telefono: 'Solo números, espacios, "+" o "-", entre 7 y 20 caracteres.',
+  numero_identificacion: 'Solo letras y números, entre 5-20 caracteres.',
+  nombre: 'Solo letras y espacios, entre 2-80 caracteres.',
+  correo: 'Ingresa un correo válido, como nombre@dominio.com.',
+  telefono: 'Solo números, espacios, 8-11 caracteres.',
   provincia: 'Selecciona una provincia.',
-  canton: 'Solo letras y espacios, entre 2 y 60 caracteres.',
-  distrito: 'Solo letras y espacios, entre 2 y 60 caracteres.',
-  direccion: 'Usa letras, números y puntuación básica, entre 5 y 200 caracteres.',
+  canton: 'Solo letras y espacios, entre 2-60 caracteres.',
+  distrito: 'Solo letras y espacios, entre 2-60 caracteres.',
+  direccion: 'Usa letras, números y puntuación básica, entre 5-100 caracteres.',
   tipo_incidente: 'Selecciona un tipo de incidente.',
-  descripcion: 'Describe el incidente con al menos 10 caracteres (máximo 1000).',
+  descripcion: 'Describe el incidente con al menos 10 caracteres (máximo 500).',
 };
 
 const form = document.getElementById('formulario');
