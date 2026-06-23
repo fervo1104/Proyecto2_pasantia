@@ -140,17 +140,11 @@ def enviar():
 
 
 if __name__ == "__main__":
-    # host 0.0.0.0 hace que escuche en todas las interfaces de red de la
-    # máquina (local o pública), sin necesidad de fijar una IP en el código.
-    # debug solo se activa por variable de entorno: nunca debe estar
-    # encendido si la máquina es accesible por IP pública, ya que expone
-    # un debugger interactivo capaz de ejecutar código arbitrario.
+   
     debug_mode = os.environ.get("FLASK_DEBUG", "0") == "1"
     port = 5000
 
-    # Con el reloader de debug activo, este script se ejecuta dos veces
-    # (proceso vigilante + proceso real). Solo el proceso real define
-    # WERKZEUG_RUN_MAIN, así que el aviso se imprime una sola vez.
+   
     if not debug_mode or os.environ.get("WERKZEUG_RUN_MAIN") == "true":
         local_ip = get_local_ip()
         print(f"\n{COLOR_GREEN}Conéctate a este formulario desde cualquier dispositivo de la misma red en:{COLOR_RESET}")
