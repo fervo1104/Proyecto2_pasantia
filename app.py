@@ -90,7 +90,7 @@ def get_fernet():
         key = f.read()
     return Fernet(key)
 
-
+#importante
 def validate_field(name, value):
     rule = FIELD_RULES[name]
     value = (value or "").strip()
@@ -99,7 +99,7 @@ def validate_field(name, value):
         if value not in rule["choices"]:
             return None, f"Valor inválido para '{name}'."
         return value, None
-
+#f pone el ofrmato al string
     if not re.match(rule["pattern"], value):
         return None, f"El campo '{name}' contiene caracteres no permitidos o longitud inválida."
 
@@ -114,8 +114,8 @@ def validate_form(data):
             return None, error
         clean[field] = value
     return clean, None
-
-
+# conexion con la ip osea la ruta
+#expplique direccion ip y como se crean 
 @app.route("/")
 def index():
     return render_template(

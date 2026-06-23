@@ -1,92 +1,17 @@
-/**
- * Validación del lado del cliente: solo mejora la experiencia de uso.
- * La validación que realmente protege los datos ocurre en el servidor (app.py).
- */
-
-
-  function soloNumeros(texto) {
-  for (let i = 0; i < texto.length; i++) {
-    if (texto[i] < "0" || texto[i] > "9") return false;
-  }
-  return true;
-  }
-
-  function soloLetras(texto) {
-  const permitidas = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ áéíóúÁÉÍÓÚñÑ";
-  for (let i = 0; i < texto.length; i++) {
-    if (!permitidas.includes(texto[i])) return false;
-  }
-  return true;
-}
-
-document.getElementById("cedula").addEventListener("input", function () {
-  this.setCustomValidity("");
-});
-
-document.getElementById("nombre").addEventListener("input", function () {
-  this.setCustomValidity("");
-});
-
-document.getElementById("nombre").addEventListener("input", function () {
-  this.setCustomValidity("");
-});
-
-document.getElementById("telefono").addEventListener("input", function () {
-  this.setCustomValidity("");
-});
-
-document.getElementById("edadOpciones").addEventListener("input", function () {
-  this.setCustomValidity("");
-});
-
-document.getElementById("canton").addEventListener("input", function () {
-  this.setCustomValidity("");
-});
-
-document.getElementById("distrito").addEventListener("input", function () {
-  this.setCustomValidity("");
-});
-
-document.getElementById("formulario").addEventListener("submit", async function (e) {
-  if (!soloNumeros(cedula)) {
-    document.getElementById("cedula").setCustomValidity("Solo se permiten números en este campo");
-    document.getElementById("cedula").reportValidity();
-    return;
-  }
-
-  if (!soloLetras(nombre)) {
-    document.getElementById("nombre").setCustomValidity("Solo se permiten letras en este campo");
-    document.getElementById("nombre").reportValidity();
-    return;
-  }
-
-   if (!soloNumeros(telefono)) {
-    document.getElementById("telefono").setCustomValidity("Solo se permiten números en este campo");
-    document.getElementById("telefono").reportValidity();
-    return;
-  }
-
-   if (!soloNumeros(edad)) {
-    document.getElementById("edadOpciones").setCustomValidity("Solo se permiten números en este campo");
-    document.getElementById("edadOpciones").reportValidity();
-    return;
-  }
-
-   if (!soloLetras(canton)) {
-    document.getElementById("canton").setCustomValidity("Solo se permiten letras en este campo");
-    document.getElementById("canton").reportValidity();
-    return;
-  }
-   if (!soloLetras(distrito)) {
-    document.getElementById("distrito").setCustomValidity("Solo se permiten letras en este campo");
-    document.getElementById("distrito").reportValidity();
-    return;
-  }
-});
+const PATTERNS = {
+  numero_identificacion: /^[A-Za-z0-9]{5,20}$/,
+  nombre: /^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,80}$/,
+  correo: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+  telefono: /^[0-9+\- ]{7,20}$/,
+  direccion: /^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 .,#\-/]{5,200}$/,
+  canton: /^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,60}$/,
+  distrito: /^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,60}$/,
+  descripcion: /^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 .,;:¡!¿?\-\n]{10,1000}$/,
+};
 // Mensaje específico que se muestra debajo de cada campo cuando es inválido.
 const MESSAGES = {
   tipo_identificacion: 'Selecciona un tipo de identificación.',
-  numero_identificacion: 'Solo letras y números, entre 5-20 caracteres.',
+  numero_identificacion: 'Solo números, entre 5-20 caracteres.',
   nombre: 'Solo letras y espacios, entre 2-80 caracteres.',
   correo: 'Ingresa un correo válido, como nombre@dominio.com.',
   telefono: 'Solo números, espacios, 8-11 caracteres.',
@@ -108,8 +33,9 @@ function setFieldState(field, isValid) {
   field.setAttribute('aria-invalid', String(!isValid));
 
   const errorEl = document.getElementById(`error-${field.name}`);
+  console.log(errorEl);
   if (errorEl) {
-    errorEl.textContent = isValid ? '' : ` ${MESSAGES[field.name] || 'Este campo no es válido.'}`;
+    errorEl.textContent = isValid ? '' :`${MESSAGES[field.name] || 'Este campo no es válido.'}`;
   }
 }
 
