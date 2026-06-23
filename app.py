@@ -1,11 +1,4 @@
-"""
-Backend del formulario de reporte de incidentes.
 
-Seguridad por diseño:
-- Cada campo se valida contra una lista blanca de caracteres antes de tocar disco.
-- Los valores ya validados se cifran (AES-128 vía Fernet) antes de guardarse.
-- El archivo de texto nunca contiene datos en claro, solo tokens cifrados.
-"""
 
 import os
 import re
@@ -30,10 +23,6 @@ DATA_FILE = os.path.join(DATA_DIR, "reportes.txt")
 DATA_FILE_SIN_CIFRAR = os.path.join(DATA_DIR, "reportes2.txt")
 KEY_FILE = os.path.join(BASE_DIR, "secret.key")
 
-# Interruptor de prueba/depuración: si está en True, además del archivo
-# cifrado se guarda una copia en texto plano en reportes2.txt.
-# ADVERTENCIA: dejar esto en True expone datos personales sin proteger.
-# Solo debe usarse en pruebas locales, nunca en una máquina con IP pública.
 GUARDAR_SIN_CIFRAR = True
 
 app = Flask(__name__)
@@ -51,7 +40,6 @@ TIPOS_INCIDENTE = {
     "Otro",
 }
 
-# Cada regla define: patrón permitido (lista blanca) y longitud máxima.
 FIELD_RULES = {
     "tipo_identificacion": {"choices": TIPOS_IDENTIFICACION},
     "numero_identificacion": {"pattern": r"^[A-Za-z0-9]{5,20}$"},
@@ -70,10 +58,10 @@ FIELD_ORDER = list(FIELD_RULES.keys())
 
 
 def get_local_ip():
-    """Obtiene la IP de esta máquina en la red local (no requiere conexión real a internet)."""
+    #Obtiene la IP de esta máquina en la red local no ocupa conexión real a internet
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
-        s.connect(("8.8.8.8", 80))
+        s.connect(("8.8.8.8", 20))
         return s.getsockname()[0]
     except OSError:
         return "127.0.0.1"
@@ -115,7 +103,6 @@ def validate_form(data):
         clean[field] = value
     return clean, None
 # conexion con la ip osea la ruta
-#expplique direccion ip y como se crean 
 @app.route("/")
 def index():
     return render_template(

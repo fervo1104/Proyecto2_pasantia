@@ -8,7 +8,6 @@ const PATTERNS = {
   distrito: /^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,60}$/,
   descripcion: /^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 .,;:¡!¿?\-\n]{10,1000}$/,
 };
-// Mensaje específico que se muestra debajo de cada campo cuando es inválido.
 const MESSAGES = {
   tipo_identificacion: 'Selecciona un tipo de identificación.',
   numero_identificacion: 'Solo números, entre 5-20 caracteres.',
@@ -32,10 +31,10 @@ function setFieldState(field, isValid) {
   group.classList.toggle('invalid', !isValid);
   field.setAttribute('aria-invalid', String(!isValid));
 
-  const errorEl = document.getElementById(`error-${field.name}`);
-  console.log(errorEl);
-  if (errorEl) {
-    errorEl.textContent = isValid ? '' :`${MESSAGES[field.name] || 'Este campo no es válido.'}`;
+  const errorl = document.getElementById(`error-${field.name}`);
+  console.log(errorl);
+  if (errorl) {
+    errorl.textContent = isValid ? '' :`${MESSAGES[field.name] || 'Este campo no es válido.'}`;
   }
 }
 
@@ -43,8 +42,8 @@ function clearAllFieldStates() {
   form.querySelectorAll('input, select, textarea').forEach((field) => {
     field.closest('.form-group')?.classList.remove('invalid');
     field.removeAttribute('aria-invalid');
-    const errorEl = document.getElementById(`error-${field.name}`);
-    if (errorEl) errorEl.textContent = '';
+    const errorl = document.getElementById(`error-${field.name}`);
+    if (errorl) errorl.textContent = '';
   });
 }
 
