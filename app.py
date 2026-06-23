@@ -25,7 +25,7 @@ KEY_FILE = os.path.join(BASE_DIR, "secret.key")
 
 GUARDAR_SIN_CIFRAR = True
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="html")
 
 PROVINCIAS = {"San José", "Alajuela", "Heredia", "Cartago", "Puntarenas", "Guanacaste", "Limón"}
 TIPOS_IDENTIFICACION = {"nacional", "extranjero", "pasaporte"}
