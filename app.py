@@ -102,6 +102,18 @@ def validate_form(data):
             return None, error
         clean[field] = value
     return clean, None
+@app.route("/style.css")
+def serve_css():
+    return send_from_directory(BASE_DIR, "style.css")
+
+@app.route("/js/<path:filename>")
+def serve_js(filename):
+    return send_from_directory(os.path.join(BASE_DIR, "js"), filename)
+
+@app.route("/admin")
+def admin():
+    return render_template("admin.html")
+
 # conexion con la ip osea la ruta
 @app.route("/")
 def index():
