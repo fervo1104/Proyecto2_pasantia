@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lector de Archivo Servidor</title>
+</head>
+<body>
+
+<div class="container">
+    <h2>Leer archivo TXT desde Servidor</h2>
+    <p>Presiona el botón para cargar el contenido del archivo remoto.</p>
+    
+    <button onclick="cargarArchivo()">Cargar Archivo</button>
+
+    <h3>Contenido del archivo:</h3>
+    <pre id="contenido">El contenido aparecerá aquí...</pre>
+</div>
+
+<a href="/descargar/reportes2.txt" download>
+    <button>Descargar reporte</button>
+</a>
+
+<script>
+function cargarArchivo() {
+    // 2. Ruta relativa para el Fetch: Llama al endpoint de tu app Flask
+    const url = '/descargar/reportes2.txt'; 
+    const contenedor = document.getElementById('contenido');
+
+    contenedor.innerText = "Cargando...";
+
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('No se pudo conectar con el servidor. Código: ' + response.status);
+            }
+            return response.text();
+        })
+        .then(data => {
+            contenedor.classList.remove('error');
+            // Aquí se despliega el texto dentro de la etiqueta <pre>
+            contenedor.innerText = data; 
+        })
+        .catch(error => {
+            contenedor.classList.add('error');
+            contenedor.innerText = 'Error: ' + error.message + 
+                '\n\n[Nota]: Asegúrate de que el servidor Flask esté corriendo.';
+            console.error('Error detallado:', error);
+        });
+}
+</script>
+
+<script src="/js/app.js"></script>
+</body>
+</html>
