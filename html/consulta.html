@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipo de Incidente</title>
+    <link rel="stylesheet" href="/style copy.css">
+</head>
+<body>
+    <header>
+        <div class="hdr">
+            <nav>
+                <ul class="navbar-list">
+                    <li class="navbar-item"><a href="/html/index.html">Volver al formulario</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Formularios recibidos</h1>
+
+        <div style="display: flex; gap: 60px; align-items: flex-start; max-width: 1400px; width: 100%;">
+
+
+            <form id="formulario" class="card" novalidate style="flex: 3;">
+                <fieldset>
+                    <legend>Datos de contacto</legend>
+
+                    <div class="form-group2">
+                        <label for="tipo_identificacion">Tipo de identificación</label>
+                        <input type="text" id="tipo_identificacion2" name="tipo_identificacion"
+                               placeholder="" required maxlength="20">
+                        <small class="field-error" id="error-tipo_identificacion"></small>
+                    </div>
+
+                    <div class="form-group2">
+                        <label for="numero_identificacion">Número de identificación</label>
+                        <input type="text" id="numero_identificacion2" name="numero_identificacion"
+                               placeholder="" required maxlength="20">
+                        <small class="field-error" id="error-numero_identificacion"></small>
+                    </div>
+
+                    <div class="form-group2">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre2" name="nombre" placeholder="" required maxlength="80">
+                        <small class="field-error" id="error-nombre"></small>
+                    </div>
+
+                    <div class="form-group2">
+                        <label for="correo">Correo electrónico</label>
+                        <input type="email" id="correo2" name="correo" placeholder="" required maxlength="100">
+                        <small class="field-error" id="error-correo"></small>
+                    </div>
+
+                    <div class="form-group2">
+                        <label for="telefono">Número de teléfono</label>
+                        <input type="text" id="telefono2" name="telefono" placeholder="" required maxlength="20">
+                        <small class="field-error" id="error-telefono"></small>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Ubicación</legend>
+
+                    <div class="form-group2">
+                        <label for="provincia">Provincia</label>
+                        <input type="text" id="provincia2" name="provincia"
+                               placeholder="" required maxlength="20">
+                        <small class="field-error" id="error-provincia"></small>
+                    </div>
+
+                    <div class="form-group2">
+                        <label for="canton">Cantón</label>
+                        <input type="text" id="canton2" name="canton" placeholder="" required maxlength="60">
+                        <small class="field-error" id="error-canton"></small>
+                    </div>
+
+                    <div class="form-group2">
+                        <label for="distrito">Distrito</label>
+                        <input type="text" id="distrito2" name="distrito" placeholder="" required maxlength="60">
+                        <small class="field-error" id="error-distrito"></small>
+                    </div>
+
+                    <div class="form-group2">
+                        <label for="direccion">Dirección exacta</label>
+                        <input type="text" id="direccion2" name="direccion" placeholder="" required maxlength="200">
+                        <small class="field-error" id="error-direccion"></small>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Detalle del incidente</legend>
+
+                    <div class="form-group2">
+                        <label for="tipoincidente">Tipo de incidente</label>
+                        <input type="text" id="tipoincidente2" name="tipoincidente"
+                               placeholder="" required maxlength="20">
+                        <small class="field-error" id="error-tipoincidente"></small>
+                    </div>
+
+                    <div class="form-group2">
+                        <label for="descripcion">Descripción</label>
+                        <textarea id="descripcion2" name="descripcion" placeholder="" required minlength="10" maxlength="1000"></textarea>
+                        <small class="field-error" id="error-descripcion"></small>
+                    </div>
+                </fieldset>
+                <br>
+
+                <button class="btn-primary" onclick="window.print()">Imprimir pantalla</button>
+            </form>
+
+            <div class="card" style="display: flex; flex-direction: column; gap: 12px; flex: 1;">
+                <button class="btn-primary" onclick="history.back()">Atrás</button>
+                <button class="btn-primary" onclick="">Siguiente formulario</button>
+            </div>
+
+        </div>
+    </main>
+    
+    <script src="/js/app.js"></script>
+
+        <script>
+        function verificarAcceso() {
+            const usuario = prompt("Ingresa el usuario:");
+            const contrasena = prompt("Ingresa la contraseña:");
+            if (usuario === "admin123" && contrasena === "proyecto2" ) {
+                window.location.href = "/admin";
+            } else {
+                alert("Contraseña o usuario incorrecto.");
+            }
+        }
+    </script>
+</body>
+</html>
+

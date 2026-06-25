@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Panel de Administrador</title>
     <link rel="stylesheet" href="/style.css">
 </head>
@@ -20,12 +21,18 @@
     <main class="container">
         <h1>Panel de Administrador</h1>
         <p>Presiona el botón para cargar el contenido del archivo remoto.</p>
+=======
+    <title>Lector de Archivo Servidor</title>
+</head>
+<body>
+>>>>>>> f94b0e56a7bb1c5324094e7c3fae7dbbfd90bd7c
 
         <div class="card">
             <div class="form-group">
                 <button class="btn-primary" onclick="cargarArchivo()">Cargar Archivo</button>
             </div>
 
+<<<<<<< HEAD
             <div class="form-group">
                 <a href="http://172.233.177.244/descargar/reportes2.txt">
                     <button type="button" class="btn-primary">Descargar reporte</button>
@@ -64,5 +71,45 @@
                 });
         }
     </script>
+=======
+    <h3>Contenido del archivo:</h3>
+    <pre id="contenido">El contenido aparecerá aquí...</pre>
+</div>
+
+<a href="/descargar/reportes2.txt" download>
+    <button>Descargar reporte</button>
+</a>
+
+<script>
+function cargarArchivo() {
+    // 2. Ruta relativa para el Fetch: Llama al endpoint de tu app Flask
+    const url = '/descargar/reportes2.txt'; 
+    const contenedor = document.getElementById('contenido');
+
+    contenedor.innerText = "Cargando...";
+
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('No se pudo conectar con el servidor. Código: ' + response.status);
+            }
+            return response.text();
+        })
+        .then(data => {
+            contenedor.classList.remove('error');
+            // Aquí se despliega el texto dentro de la etiqueta <pre>
+            contenedor.innerText = data; 
+        })
+        .catch(error => {
+            contenedor.classList.add('error');
+            contenedor.innerText = 'Error: ' + error.message + 
+                '\n\n[Nota]: Asegúrate de que el servidor Flask esté corriendo.';
+            console.error('Error detallado:', error);
+        });
+}
+</script>
+
+<script src="/js/app.js"></script>
+>>>>>>> f94b0e56a7bb1c5324094e7c3fae7dbbfd90bd7c
 </body>
 </html>
