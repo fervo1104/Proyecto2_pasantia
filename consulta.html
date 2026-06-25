@@ -1,19 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tipo de Incidente</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style copy.css">
 </head>
 <body>
     <header>
         <div class="hdr">
             <nav>
                 <ul class="navbar-list">
-                    <li class="navbar-item"><a href="/html/admin.html" onclick="verificarAcceso(); return false;">Acceso de administrador</a></li>
-                
+                    <li class="navbar-item"><a href="/html/index.html">Volver al formulario</a></li>
                 </ul>
             </nav>
         </div>
@@ -22,43 +20,40 @@
     <main class="container">
          <h1>Formularios recibidos</h1>
 
+         
         <form id="formulario" class="card" novalidate>
             <fieldset>
                 <legend>Datos de contacto</legend>
 
                 <div class="form-group">
                     <label for="tipo_identificacion">Tipo de identificación</label>
-                    <select id="tipo_identificacion" name="tipo_identificacion" required>
-                        <option value="">-- Selecciona --</option>
-                        <option value="nacional">Cédula Nacional</option>
-                        <option value="extranjero">Cédula Extranjero (DIMEX)</option>
-                        <option value="pasaporte">Pasaporte</option>
-                    </select>
+                    <input type="text" id="tipo_identificacion" name="tipo_identificacion"
+                           placeholder="" required maxlength="20">
                     <small class="field-error" id="error-tipo_identificacion"></small>
                 </div>
 
                 <div class="form-group">
                     <label for="numero_identificacion">Número de identificación</label>
                     <input type="text" id="numero_identificacion" name="numero_identificacion"
-                           placeholder="Ej. 109870456" required maxlength="20">
+                           placeholder="" required maxlength="20">
                     <small class="field-error" id="error-numero_identificacion"></small>
                 </div>
 
                 <div class="form-group">
                     <label for="nombre">Nombre completo</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required maxlength="80">
+                    <input type="text" id="nombre" name="nombre" placeholder="" required maxlength="80">
                     <small class="field-error" id="error-nombre"></small>
                 </div>
 
                 <div class="form-group">
                     <label for="correo">Correo electrónico</label>
-                    <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" required maxlength="100">
+                    <input type="email" id="correo" name="correo" placeholder="" required maxlength="100">
                     <small class="field-error" id="error-correo"></small>
                 </div>
 
                 <div class="form-group">
                     <label for="telefono">Número de teléfono</label>
-                    <input type="text" id="telefono" name="telefono" placeholder="Escribe tu número de teléfono" required maxlength="20">
+                    <input type="text" id="telefono" name="telefono" placeholder="" required maxlength="20">
                     <small class="field-error" id="error-telefono"></small>
                 </div>
             </fieldset>
@@ -68,34 +63,26 @@
 
                 <div class="form-group">
                     <label for="provincia">Provincia</label>
-                    <select id="provincia" name="provincia" required>
-                        <option value="">-- Selecciona la provincia --</option>
-                        <option value="San José">San José</option>
-                        <option value="Alajuela">Alajuela</option>
-                        <option value="Heredia">Heredia</option>
-                        <option value="Cartago">Cartago</option>
-                        <option value="Puntarenas">Puntarenas</option>
-                        <option value="Guanacaste">Guanacaste</option>
-                        <option value="Limón">Limón</option>
-                    </select>
+                    <input type="text" id="provincia" name="provincia"
+                           placeholder="" required maxlength="20">
                     <small class="field-error" id="error-provincia"></small>
                 </div>
 
                 <div class="form-group">
                     <label for="canton">Cantón</label>
-                    <input type="text" id="canton" name="canton" placeholder="Escribe el cantón" required maxlength="60">
+                    <input type="text" id="canton" name="canton" placeholder="" required maxlength="60">
                     <small class="field-error" id="error-canton"></small>
                 </div>
 
                 <div class="form-group">
                     <label for="distrito">Distrito</label>
-                    <input type="text" id="distrito" name="distrito" placeholder="Escribe el distrito" required maxlength="60">
+                    <input type="text" id="distrito" name="distrito" placeholder="" required maxlength="60">
                     <small class="field-error" id="error-distrito"></small>
                 </div>
 
                 <div class="form-group">
                     <label for="direccion">Dirección exacta</label>
-                    <input type="text" id="direccion" name="direccion" placeholder="Detalles exactos del lugar" required maxlength="200">
+                    <input type="text" id="direccion" name="direccion" placeholder="" required maxlength="200">
                     <small class="field-error" id="error-direccion"></small>
                 </div>
             </fieldset>
@@ -103,36 +90,29 @@
             <fieldset>
                 <legend>Detalle del incidente</legend>
 
-                <div class="form-group">
-                    <label for="tipo_incidente">Tipo de incidente</label>
-                    <select id="tipo_incidente" name="tipo_incidente" required>
-                        <option value="">-- Seleccione tipo de incidente --</option>
-                        <option value="Calles y Carreteras">Calles y Carreteras</option>
-                        <option value="Luz, Agua y Electricidad">Luz, Agua y Electricidad</option>
-                        <option value="Parques y Áreas Verdes">Parques y Áreas Verdes</option>
-                        <option value="Edificios y Construcciones">Edificios y Construcciones</option>
-                        <option value="Inundaciones y Drenajes">Inundaciones y Drenajes</option>
-                        <option value="Situaciones de Peligro">Situaciones de Peligro</option>
-                        <option value="Teléfono e Internet">Teléfono e Internet</option>
-                        <option value="otro">Otro</option>
-                    </select>
-                    <small class="field-error" id="error-tipo_incidente"></small>
+               <div class="form-group">
+                    <label for="tipoincidente">Tipo de incidente</label>
+                    <input type="text" id="tipoincidente" name="tipoincidente"
+                           placeholder="" required maxlength="20">
+                    <small class="field-error" id="error-tipoincidente"></small>
                 </div>
 
                 <div class="form-group">
                     <label for="descripcion">Descripción</label>
-                    <textarea id="descripcion" name="descripcion" placeholder="Describe el incidente" required minlength="10" maxlength="1000"></textarea>
+                    <textarea id="descripcion" name="descripcion" placeholder="" required minlength="10" maxlength="1000"></textarea>
                     <small class="field-error" id="error-descripcion"></small>
                 </div>
             </fieldset>
             <br>
             
-            <button type="submit" class="btn-primary">Enviar reporte</button>
+            <button class="btn-primary"onclick="window.print()">Imprimir pantalla</button>
         </form>
 
         <p id="mensaje" class="mensaje" role="status" aria-live="polite"></p>
-    </main>
 
+        
+    </main>
+    
     <script src="/js/app.js"></script>
 
         <script>
@@ -148,3 +128,4 @@
     </script>
 </body>
 </html>
+

@@ -143,7 +143,7 @@ body {
 
 .container {
   max-width: 600px;
-  margin: 40px auto;
+  ;
   padding: 0 20px;
   text-align: center;
   
@@ -181,7 +181,7 @@ p {
 }
 
 .form-description {
-  width: 100%;
+  width: 50px;
   box-sizing: border-box;
 }
 
@@ -195,23 +195,9 @@ label.form-respond {
   margin-bottom: 6px;
 }
 
-.input-field,
-select {
-  width: 100%;
-  padding: 10px 12px;
-  font-size: 15px;
-  border: 1px solid #969696;
-  border-radius: 8px;
-  outline: none;
-  box-sizing: border-box;
-  background-color: #def7ff;
-  font-family: 'Quicksand', sans-serif;
-}
 
-.input-field:focus,
-select:focus {
-  border-color: #6366F1;
-}
+
+
 
 textarea.input-field {
   min-height: 80px;

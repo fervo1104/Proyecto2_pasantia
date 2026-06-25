@@ -3,55 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lector de Archivo Servidor</title>
-    
+    <title>Panel de Administrador</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <div class="hdr">
+            <nav>
+                <ul class="navbar-list">
+                    <li class="navbar-item"><a href="/">Volver al formulario</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
+    <main class="container">
+        <h1>Panel de Administrador</h1>
+        <p>Presiona el botón para cargar el contenido del archivo remoto.</p>
 
-<div class="container">
-    <h2>Leer archivo TXT desde Servidor</h2>
-    <p>Presiona el botón para cargar el contenido del archivo remoto.</p>
-    
-    <button onclick="cargarArchivo()">Cargar Archivo</button>
+        <div class="card">
+            <div class="form-group">
+                <button class="btn-primary" onclick="cargarArchivo()">Cargar Archivo</button>
+            </div>
 
-    <h3>Contenido del archivo:</h3>
-    <pre id="contenido">El contenido aparecerá aquí...</pre>
-</div>
-<a href="http://172.233.177.244/descargar/reportes2.txt">
-    <button>Descargar reporte</button>
-</a>
-<script>
-function cargarArchivo() {
+            <div class="form-group">
+                <a href="http://172.233.177.244/descargar/reportes2.txt">
+                    <button type="button" class="btn-primary">Descargar reporte</button>
+                </a>
+            </div>
 
-    const url = 'url_completa = f"{172.233.177.244}/proyecto2_pasantia/data/reportes2.txt"'; 
-    const contenedor = document.getElementById('contenido');
-
-    contenedor.innerText = "Cargando...";
-
-    fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('No se pudo conectar con el servidor. Código: ' + response.status);
-            }
-            return response.text();
-        })
-        .then(data => {
-            contenedor.classList.remove('error');
-            contenedor.innerText = data;
-        })
-        .catch(error => {
-            contenedor.classList.add('error');
-            contenedor.innerText = 'Error: ' + error.message + 
-                '\n\n[Nota]: Si la IP es correcta, asegúrate de que el servidor tenga CORS habilitado.';
-            console.error('Error detallado:', error);
-        });
-}
-
-</script>
-
-
-</body>
-</html>
+            <div class="visor-texto">
+                <label>Contenido del archivo:</label>
+                <div class="pantalla-contenido" id="contenido">El contenido aparecerá aquí...</div>
+            </div>
+        </div>
+    </main>
 
     <script src="/js/app.js"></script>
+    <script>
+        function cargarArchivo() {
+            const url = 'http://172.233.177.244/proyecto2_pasantia/data/reportes2.txt';
+            const contenedor = document.getElementById('contenido');
+
+            contenedor.innerText = "Cargando...";
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('No se pudo conectar con el servidor. Código: ' + response.status);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    contenedor.innerText = data;
+                })
+                .catch(error => {
+                    contenedor.innerText = 'Error: ' + error.message +
+                        '\n\n[Nota]: Si la IP es correcta, asegúrate de que el servidor tenga CORS habilitado.';
+                    console.error('Error detallado:', error);
+                });
+        }
+    </script>
 </body>
 </html>
