@@ -7,7 +7,7 @@
     <title>Administrador</title>
 </head>
 <body>
-    <header>
+    <header>    
         <div class="hdr">
             <nav>
                 <ul class="navbar-list">
@@ -24,9 +24,47 @@
         <div class="card">
             <button id="res" class="btn-primary">Resultados</button>
             <br><br>
-            <button id="res2" class="btn-primary">Resultados2</button>
+            <button id="res2" onclick="abrirArchivo()" class="btn-primary">Resultados2</button>
+        </div>
+
+        <div class="card">
+            <div class="grupo-control">
+                <label class="label-archivo" for="archivoInput">1. Selecciona tu archivo de texto:</label>
+                <input type="file" id="archivoInput" class="input-file" accept=".txt">
+            </div>
+
+            <div class="visor-texto">
+                <label>2. Vista del documento:</label>
+                <div id="pantalla" class="pantalla-contenido">El documento aparecerá aquí una vez que lo cargues...</div>
+            </div>
         </div>
     </main>
+    <script>
+        document.getElementById('archivoInput').addEventListener('change', function(evento) {
+            const archivo = evento.target.files[0];
+            const pantalla = document.getElementById('pantalla');
+            
+            if (!archivo) {
+                pantalla.textContent = "No se seleccionó ningún archivo.";
+                return;
+            }
+
+            const lector = new FileReader();
+
+            // Evento que se ejecuta cuando el archivo se ha leído con éxito
+            lector.onload = function(e) {
+                pantalla.textContent = e.target.result;
+            };
+
+            // Evento en caso de error
+            lector.onerror = function() {
+                pantalla.textContent = "Hubo un error al intentar leer el archivo.";
+            };
+
+            // Iniciar la lectura del archivo de texto
+            lector.readAsText(archivo);
+        });
+    </script>
 
     <script src="/js/app.js"></script>
 </body>

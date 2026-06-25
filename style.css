@@ -294,3 +294,53 @@ select.selected {
 .navbar-item a:hover {
   background-color: #4e6797;
 }
+
+.card + .card {
+  margin-top: 20px;
+}
+
+.grupo-control {
+  margin-bottom: 20px;
+}
+
+.label-archivo {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #464646;
+  margin-bottom: 8px;
+}
+
+.input-file {
+  width: 100%;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  color: #464646;
+  cursor: pointer;
+}
+
+.visor-texto label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #464646;
+  margin-bottom: 8px;
+}
+
+.pantalla-contenido {
+  background-color: #def7ff;
+  border: 1px solid #969696;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+  color: #464646;
+  min-height: 150px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: 'Quicksand', sans-serif;
+}
+
