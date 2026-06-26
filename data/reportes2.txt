@@ -1,0 +1,6 @@
+2026-06-24T16:58:13.464707+00:00,nacional,12345678,Fernanda,kikisorellana@gmail.com,84657099,Calle el tanque,Heredia,Flores,San Joaquín,Luz, Agua y Electricidad,No hay luz
+2026-06-24T20:26:37.664692+00:00,nacional,112040583,Pablo,pablo@treetopiapark.com,40007292,Monteverde,Puntarenas,Monteverde,Monteverde,Teléfono e Internet,Estoy incomunicado
+2026-06-24T20:31:13.162760+00:00,nacional,109590682,GABRIELA MOLINA,M@SAINTNICHOLAS.ED.CR,11188877,LASKDFJLASDKFJLASKDJF,Heredia,HEREDIA,HEREDIA,Teléfono e Internet,NO FUNCIONA LA CONEXION AL SERVIDOR
+2026-06-24T23:21:30.621152+00:00,nacional,109590688,GABY MOLINA,M@GMAIL.COM,9999999,ADSFJALSKDFJALKSDFJLJ,Heredia,HEREDIA,HEREDIA,Teléfono e Internet,NO FUNCIONA LA CONEXION A INTERNET
+2026-06-25T00:50:21.219147+00:00,nacional,120830418,Adriana,orellana09@gmail.com,87082884,Calle rancho Camacho,Heredia,Flores,San Joaquín,Luz, Agua y Electricidad,Inundación en la calle
+2026-06-25T01:04:26.946769+00:00,nacional,104470655,Moises Orellana,moises.orellana@gmail.com,87082884,Frente a ferretería,Heredia,Belen,San antonio,Inundaciones y Drenajes,Se desbordó el río por las fuertes lluvias
