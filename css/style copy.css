@@ -142,10 +142,10 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  max-width: 1000px;
   margin: 40px auto;
   padding: 0 20px;
-  text-align: center;
+  text-align: left;
   
 }
 

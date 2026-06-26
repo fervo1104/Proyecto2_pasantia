@@ -12,7 +12,7 @@
         <div class="hdr">
             <nav>
                 <ul class="navbar-list">
-                    <li class="navbar-item"><a href="/consulta.html" onclick="verificarAcceso(); return false;">Acceso de administrador</a></li>
+                    <li class="navbar-item"><a href="/html/consulta.html" onclick="verificarAcceso(); return false;">Acceso de administrador</a></li>
                 
                 </ul>
             </nav>
@@ -114,7 +114,7 @@
                         <option value="Inundaciones y Drenajes">Inundaciones y Drenajes</option>
                         <option value="Situaciones de Peligro">Situaciones de Peligro</option>
                         <option value="Teléfono e Internet">Teléfono e Internet</option>
-                        <option value="otro">Otro</option>
+                        <option value="Otro">Otro</option>
                     </select>
                     <small class="field-error" id="error-tipo_incidente"></small>
                 </div>
@@ -140,7 +140,7 @@
             const usuario = prompt("Ingresa el usuario:");
             const contrasena = prompt("Ingresa la contraseña:");
             if (usuario === "admin123" && contrasena === "proyecto2" ) {
-                window.location.href = "/admin";
+                window.location.href = "/html/consulta.html";
             } else {
                 alert("Contraseña o usuario incorrecto.");
             }
