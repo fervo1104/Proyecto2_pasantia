@@ -4,3 +4,7 @@
 2026-06-24T23:21:30.621152+00:00,nacional,109590688,GABY MOLINA,M@GMAIL.COM,9999999,ADSFJALSKDFJALKSDFJLJ,Heredia,HEREDIA,HEREDIA,Teléfono e Internet,NO FUNCIONA LA CONEXION A INTERNET
 2026-06-25T00:50:21.219147+00:00,nacional,120830418,Adriana,orellana09@gmail.com,87082884,Calle rancho Camacho,Heredia,Flores,San Joaquín,Luz, Agua y Electricidad,Inundación en la calle
 2026-06-25T01:04:26.946769+00:00,nacional,104470655,Moises Orellana,moises.orellana@gmail.com,87082884,Frente a ferretería,Heredia,Belen,San antonio,Inundaciones y Drenajes,Se desbordó el río por las fuertes lluvias
+2026-06-25T21:02:57.436966+00:00,nacional,117100816,German,german@gmail.com,71045555,42DSFDSFSF,San José,SFDSFG,Salitrillos,Inundaciones y Drenajes,DFsfdfsdfsdf
+2026-06-26T05:49:15.765483+00:00,extranjero,12345678,Fernanda,kikis@gmail.com,12345678,calle el tanque,San José,flores,San joaquín,Situaciones de Peligro,no hay luz
+2026-06-26T11:28:17.461713+00:00,nacional,11111111,Gaby espinoza,espinozamg22.19.01@gmail.com,70842101,Heredia,Heredia,Here,Here,Inundaciones y Drenajes,Jjjjjjjjbnbb
+2026-06-26T14:44:53.457826+00:00,nacional,12345678,Daniela,daniela@gmail.com,12345678,frente al parque,Heredia,Barva,San roque,Parques y Áreas Verdes,Se cayó un árbol
